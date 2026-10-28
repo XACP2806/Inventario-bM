@@ -1903,7 +1903,7 @@
         "max": null,
         "fk": {
           "col": "variante_id",
-          "target": "detalle_pedido",
+          "target": "variante_articulo",
           "key": "variante_id"
         }
       },
@@ -2000,12 +2000,7 @@
         "nullable": false,
         "default": null,
         "readonly": false,
-        "max": null,
-        "fk": {
-          "col": "envio_id",
-          "target": "detalle_envio",
-          "key": "envio_id"
-        }
+        "max": null
       },
       {
         "name": "detalle_envio_id",
@@ -2478,12 +2473,7 @@
         "nullable": false,
         "default": null,
         "readonly": false,
-        "max": null,
-        "fk": {
-          "col": "encargo_id",
-          "target": "detalle_encargo_costura",
-          "key": "encargo_id"
-        }
+        "max": null
       },
       {
         "name": "detalle_encargo_id",
@@ -5072,42 +5062,6 @@
         "default": "clock_timestamp()",
         "readonly": true,
         "max": null
-      },
-      {
-        "name": "variante_id",
-        "readonly": true
-      },
-      {
-        "name": "articulo_id",
-        "readonly": true
-      },
-      {
-        "name": "color_id",
-        "readonly": true
-      },
-      {
-        "name": "talla_id",
-        "readonly": true
-      },
-      {
-        "name": "sku",
-        "readonly": true
-      },
-      {
-        "name": "activo",
-        "readonly": true
-      },
-      {
-        "name": "registrado_en",
-        "readonly": true
-      },
-      {
-        "name": "registrado_por",
-        "readonly": true
-      },
-      {
-        "name": "actualizado_en",
-        "readonly": true
       }
     ]
   },

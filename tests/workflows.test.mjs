@@ -4,6 +4,16 @@ import fs from 'node:fs';
 import {database} from '../scripts/schema.mjs';
 import {saleActions,workflowActions} from '../src/workflows.mjs';
 import {previousPeriod,csvText,totals} from '../src/utils.mjs';
+
+test('formularios seleccionan registros por su clave y no duplican columnas',()=>{
+ const schema=JSON.parse(fs.readFileSync('src/schema.json','utf8'));
+ for(const [table,resource] of Object.entries(schema)){
+  assert.equal(new Set(resource.columns.map(c=>c.name)).size,resource.columns.length,table);
+  for(const col of resource.columns)if(col.fk)assert.equal(col.fk.key,schema[col.fk.target].key,table+'.'+col.name);
+ }
+ assert.equal(schema.detalle_encargo_costura.columns.find(c=>c.name==='variante_id').fk.target,'variante_articulo');
+ assert.equal(Object.values(schema).filter(r=>r.view).length,20);
+});
 test('CSV neutraliza fórmulas y escapa comillas',()=>assert.equal(csvText([{nombre:'=1+1',nota:'a"b'}]),'\uFEFF"nombre","nota"\r\n"\'=1+1","a""b"'));
 test('comparación conserva duración e incluye ambos extremos',()=>assert.deepEqual(previousPeriod('2024-03-01','2024-03-31'),['2024-01-30','2024-02-29']));
 test('métricas distinguen caja, ventas y costos provisionales',()=>{const t=totals([{ventas:44,cobros:10,resultado:20,definitivo:false}]);assert.equal(t.ventas,44);assert.equal(t.cobros,10);assert.equal(t.provisional,true);});
