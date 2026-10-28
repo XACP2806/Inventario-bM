@@ -19,7 +19,7 @@ test('comparación conserva duración e incluye ambos extremos',()=>assert.deepE
 test('métricas distinguen caja, ventas y costos provisionales',()=>{const t=totals([{ventas:44,cobros:10,resultado:20,definitivo:false}]);assert.equal(t.ventas,44);assert.equal(t.cobros,10);assert.equal(t.provisional,true);});
 test('flujos de interfaz, reportes e idempotencia en PostgreSQL',async()=>{const db=await database();try{
  await db.exec(fs.readFileSync('tests.sql','utf8').replace(/ROLLBACK;\s*$/,'COMMIT;'));
- await db.exec(`SELECT set_config('request.jwt.claim.sub','83d20ad7-300c-4cd0-9ea7-ff82366f77c2',false);`);
+ await db.exec(`SELECT set_config('request.jwt.claim.sub','83d20ad7-300c-4cd0-9ea7-ff82366f77c2',false); SET ROLE authenticated;`);
  const query=async(t)=>(await db.query(`SELECT to_jsonb(x) AS row FROM bm.${t} x` )).rows.map(x=>x.row);
  const variants=await query('variante_articulo'),arts=await query('articulo'),rates=await query('tarifa_iva_vigencia'),clients=await query('cliente'),lots=await query('lote_producto');
  const iva=rates.find(r=>r.codigo_tarifa==='TEST'&&Number(r.porcentaje)===15);
