@@ -1,0 +1,1 @@
+supabase/migrations/20261027060416_bm_inventario_v1_3.sql

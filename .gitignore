@@ -1,0 +1,10 @@
+node_modules/
+test-db/
+.env*
+!.env.example
+dist/
+.wrangler/
+.supabase/
+supabase/.temp/
+artifacts/
+*.log

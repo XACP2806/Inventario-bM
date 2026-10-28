@@ -1,0 +1,5886 @@
+{
+  "abono_cuenta_cobrar": {
+    "key": "abono_id",
+    "columns": [
+      {
+        "name": "abono_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "cuenta_cobrar_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "cuenta_cobrar_id",
+          "target": "cuenta_cobrar",
+          "key": "cuenta_cobrar_id"
+        }
+      },
+      {
+        "name": "fecha_cobro",
+        "type": "date",
+        "nullable": false,
+        "default": "CURRENT_DATE",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "monto",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "metodo",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 40
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'confirmado'::character varying",
+        "readonly": false,
+        "max": 15
+      },
+      {
+        "name": "referencia",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 100
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "abono_cuenta_pagar": {
+    "key": "abono_id",
+    "columns": [
+      {
+        "name": "abono_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "cuenta_pagar_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "cuenta_pagar_id",
+          "target": "cuenta_pagar",
+          "key": "cuenta_pagar_id"
+        }
+      },
+      {
+        "name": "fecha_pago",
+        "type": "date",
+        "nullable": false,
+        "default": "CURRENT_DATE",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "monto",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "metodo",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 40
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'confirmado'::character varying",
+        "readonly": false,
+        "max": 15
+      },
+      {
+        "name": "referencia",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 100
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "ajuste_pedido": {
+    "key": "ajuste_id",
+    "columns": [
+      {
+        "name": "detalle_pedido_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_pedido_id",
+          "target": "detalle_pedido",
+          "key": "detalle_pedido_id"
+        }
+      },
+      {
+        "name": "destino",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'prenda'::character varying",
+        "readonly": false,
+        "max": 10
+      },
+      {
+        "name": "ajuste_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "pedido_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "pedido_id",
+          "target": "pedido",
+          "key": "pedido_id"
+        }
+      },
+      {
+        "name": "fecha",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "concepto",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 200
+      },
+      {
+        "name": "monto_subtotal",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "monto_iva",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "monto_total",
+        "type": "numeric",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "clase",
+        "type": "text",
+        "nullable": false,
+        "default": "'descuento'::text",
+        "readonly": false,
+        "max": null,
+        "options": [
+          "descuento",
+          "cargo",
+          "cancelacion"
+        ]
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "articulo": {
+    "key": "articulo_id",
+    "columns": [
+      {
+        "name": "articulo_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "categoria_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "categoria_id",
+          "target": "categoria",
+          "key": "categoria_id"
+        }
+      },
+      {
+        "name": "nombre",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 120
+      },
+      {
+        "name": "descripcion",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "precio_final_catalogo",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "aplica_iva_predeterminado",
+        "type": "boolean",
+        "nullable": false,
+        "default": "true",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "porcentaje_iva_predeterminado",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "activo",
+        "type": "boolean",
+        "nullable": false,
+        "default": "true",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "fecha_alta",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "asignacion_gasto_produccion": {
+    "key": "asignacion_id",
+    "columns": [
+      {
+        "name": "asignacion_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "gasto_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "gasto_id",
+          "target": "gasto",
+          "key": "gasto_id"
+        }
+      },
+      {
+        "name": "detalle_encargo_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_encargo_id",
+          "target": "detalle_encargo_costura",
+          "key": "detalle_encargo_id"
+        }
+      },
+      {
+        "name": "monto_asignado",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "categoria": {
+    "key": "categoria_id",
+    "columns": [
+      {
+        "name": "categoria_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "nombre",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 80
+      },
+      {
+        "name": "descripcion",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 250
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "cliente": {
+    "key": "cliente_id",
+    "columns": [
+      {
+        "name": "cliente_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "nombre_completo",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 150
+      },
+      {
+        "name": "email",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 160
+      },
+      {
+        "name": "telefono",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 30
+      },
+      {
+        "name": "direccion",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 250
+      },
+      {
+        "name": "ciudad",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 80
+      },
+      {
+        "name": "fecha_registro",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "color": {
+    "key": "color_id",
+    "columns": [
+      {
+        "name": "color_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "nombre",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 60
+      },
+      {
+        "name": "codigo_hex",
+        "type": "character",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 7
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "compra": {
+    "key": "compra_id",
+    "columns": [
+      {
+        "name": "compra_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "proveedor_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "proveedor_id",
+          "target": "proveedor",
+          "key": "proveedor_id"
+        }
+      },
+      {
+        "name": "orden_compra_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "orden_compra_id",
+          "target": "orden_compra_tela",
+          "key": "orden_compra_id"
+        }
+      },
+      {
+        "name": "fecha_compra",
+        "type": "date",
+        "nullable": false,
+        "default": "CURRENT_DATE",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "fecha_emision_documento",
+        "type": "date",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "local_compra",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 180
+      },
+      {
+        "name": "tipo_comprobante",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'factura'::character varying",
+        "readonly": false,
+        "max": 25
+      },
+      {
+        "name": "numero_factura",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 30
+      },
+      {
+        "name": "clave_acceso",
+        "type": "character",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 49
+      },
+      {
+        "name": "estado_verificacion",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'pendiente'::character varying",
+        "readonly": false,
+        "max": 25
+      },
+      {
+        "name": "comprobante_archivo_url",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "comprobante_venta": {
+    "key": "comprobante_venta_id",
+    "columns": [
+      {
+        "name": "comprobante_venta_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "pedido_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "pedido_id",
+          "target": "pedido",
+          "key": "pedido_id"
+        }
+      },
+      {
+        "name": "fecha_emision",
+        "type": "date",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "tipo_comprobante",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'factura'::character varying",
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "numero_comprobante",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 30
+      },
+      {
+        "name": "clave_acceso",
+        "type": "character",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 49
+      },
+      {
+        "name": "estado_sri",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'pendiente'::character varying",
+        "readonly": false,
+        "max": 25
+      },
+      {
+        "name": "subtotal_sin_iva",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "valor_iva",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "documento_relacionado_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "documento_relacionado_id",
+          "target": "comprobante_venta",
+          "key": "comprobante_venta_id"
+        }
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "configuracion_tributaria": {
+    "key": "configuracion_id",
+    "columns": [
+      {
+        "name": "configuracion_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "razon_social",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 180
+      },
+      {
+        "name": "ruc",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 13
+      },
+      {
+        "name": "regimen",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'general'::character varying",
+        "readonly": false,
+        "max": 45
+      },
+      {
+        "name": "tipo_contribuyente",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'persona_natural'::character varying",
+        "readonly": false,
+        "max": 25
+      },
+      {
+        "name": "obligado_a_llevar_contabilidad",
+        "type": "boolean",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "agente_retencion",
+        "type": "boolean",
+        "nullable": false,
+        "default": "false",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "valido_desde",
+        "type": "date",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "valido_hasta",
+        "type": "date",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "consumo_estimado_tela": {
+    "key": "consumo_estimado_id",
+    "columns": [
+      {
+        "name": "consumo_estimado_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "articulo_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "articulo_id",
+          "target": "articulo",
+          "key": "articulo_id"
+        }
+      },
+      {
+        "name": "talla_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "talla_id",
+          "target": "talla",
+          "key": "talla_id"
+        }
+      },
+      {
+        "name": "pieza",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'principal'::character varying",
+        "readonly": false,
+        "max": 60
+      },
+      {
+        "name": "metros_por_unidad",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "activo",
+        "type": "boolean",
+        "nullable": false,
+        "default": "true",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "costurera": {
+    "key": "costurera_id",
+    "columns": [
+      {
+        "name": "costurera_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "nombre_completo",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 150
+      },
+      {
+        "name": "telefono",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 30
+      },
+      {
+        "name": "documento",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 40
+      },
+      {
+        "name": "tarifa_referencia",
+        "type": "numeric",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "activa",
+        "type": "boolean",
+        "nullable": false,
+        "default": "true",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "credito_iva_compra": {
+    "key": "credito_iva_id",
+    "columns": [
+      {
+        "name": "credito_iva_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "detalle_compra_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_compra_id",
+          "target": "detalle_compra",
+          "key": "detalle_compra_id"
+        }
+      },
+      {
+        "name": "periodo_iva_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "periodo_iva_id",
+          "target": "periodo_iva",
+          "key": "periodo_iva_id"
+        }
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'pendiente'::character varying",
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "tratamiento",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'sin_evaluar'::character varying",
+        "readonly": false,
+        "max": 25
+      },
+      {
+        "name": "iva_elegible",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "factor_aplicado",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "credito_aprobado",
+        "type": "numeric",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "fecha_revision",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "cuenta_cobrar": {
+    "key": "cuenta_cobrar_id",
+    "columns": [
+      {
+        "name": "cuenta_cobrar_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "cliente_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "cliente_id",
+          "target": "cliente",
+          "key": "cliente_id"
+        }
+      },
+      {
+        "name": "tercero_nombre",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 180
+      },
+      {
+        "name": "descripcion",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 250
+      },
+      {
+        "name": "fecha_origen",
+        "type": "date",
+        "nullable": false,
+        "default": "CURRENT_DATE",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "fecha_vencimiento",
+        "type": "date",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "monto_original",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'vigente'::character varying",
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "cuenta_pagar": {
+    "key": "cuenta_pagar_id",
+    "columns": [
+      {
+        "name": "cuenta_pagar_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "compra_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "compra_id",
+          "target": "compra",
+          "key": "compra_id"
+        }
+      },
+      {
+        "name": "proveedor_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "proveedor_id",
+          "target": "proveedor",
+          "key": "proveedor_id"
+        }
+      },
+      {
+        "name": "costurera_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "costurera_id",
+          "target": "costurera",
+          "key": "costurera_id"
+        }
+      },
+      {
+        "name": "tercero_nombre",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 180
+      },
+      {
+        "name": "descripcion",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 250
+      },
+      {
+        "name": "fecha_origen",
+        "type": "date",
+        "nullable": false,
+        "default": "CURRENT_DATE",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "fecha_vencimiento",
+        "type": "date",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "monto_original",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'vigente'::character varying",
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "detalle_compra": {
+    "key": "detalle_compra_id",
+    "columns": [
+      {
+        "name": "detalle_compra_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "compra_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "compra_id",
+          "target": "compra",
+          "key": "compra_id"
+        }
+      },
+      {
+        "name": "tipo",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "tela_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "tela_id",
+          "target": "tela",
+          "key": "tela_id"
+        }
+      },
+      {
+        "name": "descripcion",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 250
+      },
+      {
+        "name": "unidad",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'metro'::character varying",
+        "readonly": false,
+        "max": 30
+      },
+      {
+        "name": "cantidad",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "precio_unitario_sin_iva",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "descuento_sin_iva",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "iva_porcentaje",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "iva_facturado",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "otros_cargos_facturados",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "subtotal_sin_iva",
+        "type": "numeric",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "total_facturado",
+        "type": "numeric",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "detalle_devolucion": {
+    "key": "detalle_devolucion_id",
+    "columns": [
+      {
+        "name": "detalle_devolucion_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "devolucion_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "devolucion_id",
+          "target": "devolucion_pedido",
+          "key": "devolucion_id"
+        }
+      },
+      {
+        "name": "detalle_envio_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_envio_id",
+          "target": "detalle_envio",
+          "key": "detalle_envio_id"
+        }
+      },
+      {
+        "name": "cantidad",
+        "type": "integer",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "condicion",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 24
+      },
+      {
+        "name": "reingresa_inventario",
+        "type": "boolean",
+        "nullable": false,
+        "default": "false",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "credito_subtotal",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "credito_iva",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "credito_total",
+        "type": "numeric",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "detalle_pedido_reemplazo_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_pedido_reemplazo_id",
+          "target": "detalle_pedido",
+          "key": "detalle_pedido_id"
+        }
+      },
+      {
+        "name": "motivo",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "detalle_encargo_costura": {
+    "key": "detalle_encargo_id",
+    "columns": [
+      {
+        "name": "detalle_encargo_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "encargo_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "encargo_id",
+          "target": "encargo_costura",
+          "key": "encargo_id"
+        }
+      },
+      {
+        "name": "variante_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "variante_id",
+          "target": "detalle_pedido",
+          "key": "variante_id"
+        }
+      },
+      {
+        "name": "detalle_pedido_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_pedido_id",
+          "target": "detalle_pedido",
+          "key": "detalle_pedido_id"
+        }
+      },
+      {
+        "name": "cantidad_solicitada",
+        "type": "integer",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "tarifa_mano_obra_unitaria",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "detalle_entrega": {
+    "key": "detalle_entrega_id",
+    "columns": [
+      {
+        "name": "detalle_entrega_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "entrega_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "entrega_id",
+          "target": "entrega_pedido",
+          "key": "entrega_id"
+        }
+      },
+      {
+        "name": "envio_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "envio_id",
+          "target": "detalle_envio",
+          "key": "envio_id"
+        }
+      },
+      {
+        "name": "detalle_envio_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_envio_id",
+          "target": "detalle_envio",
+          "key": "detalle_envio_id"
+        }
+      },
+      {
+        "name": "cantidad_entregada",
+        "type": "integer",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "detalle_envio": {
+    "key": "detalle_envio_id",
+    "columns": [
+      {
+        "name": "detalle_envio_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "envio_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "envio_id",
+          "target": "envio",
+          "key": "envio_id"
+        }
+      },
+      {
+        "name": "detalle_pedido_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_pedido_id",
+          "target": "detalle_pedido",
+          "key": "detalle_pedido_id"
+        }
+      },
+      {
+        "name": "lote_producto_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "lote_producto_id",
+          "target": "lote_producto",
+          "key": "lote_producto_id"
+        }
+      },
+      {
+        "name": "cantidad",
+        "type": "integer",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "detalle_orden_compra_tela": {
+    "key": "detalle_orden_id",
+    "columns": [
+      {
+        "name": "detalle_orden_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "orden_compra_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "orden_compra_id",
+          "target": "orden_compra_tela",
+          "key": "orden_compra_id"
+        }
+      },
+      {
+        "name": "tela_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "tela_id",
+          "target": "tela",
+          "key": "tela_id"
+        }
+      },
+      {
+        "name": "metros_solicitados",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "precio_estimado_metro_sin_iva",
+        "type": "numeric",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "detalle_pedido": {
+    "key": "detalle_pedido_id",
+    "columns": [
+      {
+        "name": "detalle_pedido_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "pedido_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "pedido_id",
+          "target": "pedido",
+          "key": "pedido_id"
+        }
+      },
+      {
+        "name": "variante_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "variante_id",
+          "target": "variante_articulo",
+          "key": "variante_id"
+        }
+      },
+      {
+        "name": "tipo_linea",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'venta'::character varying",
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "descripcion_vendida",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 200
+      },
+      {
+        "name": "sku_vendido",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 60
+      },
+      {
+        "name": "cantidad",
+        "type": "integer",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "precio_lista_unitario",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "precio_unitario_final",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "precio_unitario_venta",
+        "type": "numeric",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "fecha_tributaria",
+        "type": "date",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "codigo_tarifa",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 30
+      },
+      {
+        "name": "motivo_tributario",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "total_linea",
+        "type": "numeric",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "aplica_iva",
+        "type": "boolean",
+        "nullable": false,
+        "default": "true",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "porcentaje_iva",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "detalle_venta",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "subtotal_linea",
+        "type": "numeric",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "valor_iva_linea",
+        "type": "numeric",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "tratamiento_iva",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'por_definir'::character varying",
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "cantidad_cancelada",
+        "type": "integer",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "motivo_cancelacion",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "detalle_recepcion_costura": {
+    "key": "detalle_recepcion_id",
+    "columns": [
+      {
+        "name": "detalle_recepcion_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "recepcion_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "recepcion_id",
+          "target": "recepcion_costura",
+          "key": "recepcion_id"
+        }
+      },
+      {
+        "name": "encargo_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "encargo_id",
+          "target": "detalle_encargo_costura",
+          "key": "encargo_id"
+        }
+      },
+      {
+        "name": "detalle_encargo_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_encargo_id",
+          "target": "detalle_encargo_costura",
+          "key": "detalle_encargo_id"
+        }
+      },
+      {
+        "name": "cantidad_recibida",
+        "type": "integer",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "cantidad_aceptada",
+        "type": "integer",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "cantidad_rechazada",
+        "type": "integer",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "devolucion_pedido": {
+    "key": "devolucion_id",
+    "columns": [
+      {
+        "name": "devolucion_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "pedido_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "pedido_id",
+          "target": "pedido",
+          "key": "pedido_id"
+        }
+      },
+      {
+        "name": "fecha_solicitud",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "fecha_resolucion",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "tipo",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'solicitada'::character varying",
+        "readonly": false,
+        "max": 24
+      },
+      {
+        "name": "motivo",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "encargo_costura": {
+    "key": "encargo_id",
+    "columns": [
+      {
+        "name": "encargo_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "costurera_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "costurera_id",
+          "target": "costurera",
+          "key": "costurera_id"
+        }
+      },
+      {
+        "name": "fecha_encargo",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "fecha_entrega_estimada",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "fecha_cierre",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'pendiente'::character varying",
+        "readonly": false,
+        "max": 24
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "entrega_pedido": {
+    "key": "entrega_id",
+    "columns": [
+      {
+        "name": "entrega_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "envio_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "envio_id",
+          "target": "envio",
+          "key": "envio_id"
+        }
+      },
+      {
+        "name": "fecha_entrega",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "receptor_nombre",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 150
+      },
+      {
+        "name": "comprobante_recepcion_url",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'borrador'::character varying",
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "observaciones",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "envio": {
+    "key": "envio_id",
+    "columns": [
+      {
+        "name": "envio_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "pedido_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "pedido_id",
+          "target": "pedido",
+          "key": "pedido_id"
+        }
+      },
+      {
+        "name": "transportadora",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 100
+      },
+      {
+        "name": "numero_guia",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 80
+      },
+      {
+        "name": "direccion_entrega",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 250
+      },
+      {
+        "name": "ciudad_entrega",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 80
+      },
+      {
+        "name": "fecha_envio",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "fecha_entrega",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'preparando'::character varying",
+        "readonly": false,
+        "max": 24
+      },
+      {
+        "name": "costo_real_transportadora",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "modalidad_entrega",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'transportadora'::character varying",
+        "readonly": false,
+        "max": 25
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "gasto": {
+    "key": "gasto_id",
+    "columns": [
+      {
+        "name": "gasto_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "tipo_gasto_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "tipo_gasto_id",
+          "target": "tipo_gasto",
+          "key": "tipo_gasto_id"
+        }
+      },
+      {
+        "name": "encargo_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "encargo_id",
+          "target": "encargo_costura",
+          "key": "encargo_id"
+        }
+      },
+      {
+        "name": "proveedor",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 150
+      },
+      {
+        "name": "descripcion",
+        "type": "text",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "cantidad",
+        "type": "numeric",
+        "nullable": false,
+        "default": "1",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "unidad",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'unidad'::character varying",
+        "readonly": false,
+        "max": 30
+      },
+      {
+        "name": "costo_unitario",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "costo_total",
+        "type": "numeric",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "fecha_gasto",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "detalle_compra_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_compra_id",
+          "target": "detalle_compra",
+          "key": "detalle_compra_id"
+        }
+      },
+      {
+        "name": "proveedor_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "proveedor_id",
+          "target": "proveedor",
+          "key": "proveedor_id"
+        }
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "lote_producto": {
+    "key": "lote_producto_id",
+    "columns": [
+      {
+        "name": "variante_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "variante_id",
+          "target": "variante_articulo",
+          "key": "variante_id"
+        }
+      },
+      {
+        "name": "lote_producto_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "detalle_recepcion_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_recepcion_id",
+          "target": "detalle_recepcion_costura",
+          "key": "detalle_recepcion_id"
+        }
+      },
+      {
+        "name": "fecha_alta",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "costo_tela_unitario",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "costo_mano_obra_unitario",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "costo_insumos_unitario",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "costo_total_unitario",
+        "type": "numeric",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "costo_finalizado",
+        "type": "boolean",
+        "nullable": false,
+        "default": "false",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "lote_tela": {
+    "key": "lote_tela_id",
+    "columns": [
+      {
+        "name": "lote_tela_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "tela_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "tela_id",
+          "target": "tela",
+          "key": "tela_id"
+        }
+      },
+      {
+        "name": "proveedor",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 150
+      },
+      {
+        "name": "referencia_compra",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 100
+      },
+      {
+        "name": "fecha_compra",
+        "type": "date",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "fecha_ingreso",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "metros_comprados",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "costo_metro",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "detalle_compra_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_compra_id",
+          "target": "detalle_compra",
+          "key": "detalle_compra_id"
+        }
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "movimiento_producto": {
+    "key": "movimiento_producto_id",
+    "columns": [
+      {
+        "name": "movimiento_producto_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "lote_producto_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "lote_producto_id",
+          "target": "lote_producto",
+          "key": "lote_producto_id"
+        }
+      },
+      {
+        "name": "tipo",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 24
+      },
+      {
+        "name": "cantidad_delta",
+        "type": "integer",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "detalle_envio_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_envio_id",
+          "target": "detalle_envio",
+          "key": "detalle_envio_id"
+        }
+      },
+      {
+        "name": "detalle_devolucion_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_devolucion_id",
+          "target": "detalle_devolucion",
+          "key": "detalle_devolucion_id"
+        }
+      },
+      {
+        "name": "fecha",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "movimiento_tela": {
+    "key": "movimiento_tela_id",
+    "columns": [
+      {
+        "name": "movimiento_tela_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "lote_tela_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "lote_tela_id",
+          "target": "lote_tela",
+          "key": "lote_tela_id"
+        }
+      },
+      {
+        "name": "origen_ubicacion_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "origen_ubicacion_id",
+          "target": "ubicacion_tela",
+          "key": "ubicacion_id"
+        }
+      },
+      {
+        "name": "destino_ubicacion_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "destino_ubicacion_id",
+          "target": "ubicacion_tela",
+          "key": "ubicacion_id"
+        }
+      },
+      {
+        "name": "detalle_encargo_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_encargo_id",
+          "target": "detalle_encargo_costura",
+          "key": "detalle_encargo_id"
+        }
+      },
+      {
+        "name": "tipo",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 22
+      },
+      {
+        "name": "metros",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "fecha",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "orden_compra_tela": {
+    "key": "orden_compra_id",
+    "columns": [
+      {
+        "name": "orden_compra_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "proveedor_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "proveedor_id",
+          "target": "proveedor",
+          "key": "proveedor_id"
+        }
+      },
+      {
+        "name": "fecha_orden",
+        "type": "date",
+        "nullable": false,
+        "default": "CURRENT_DATE",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "local_previsto",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 180
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'borrador'::character varying",
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "pago_costurera": {
+    "key": "pago_costurera_id",
+    "columns": [
+      {
+        "name": "pago_costurera_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "encargo_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "encargo_id",
+          "target": "encargo_costura",
+          "key": "encargo_id"
+        }
+      },
+      {
+        "name": "fecha_pago",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "monto",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "metodo",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 40
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'confirmado'::character varying",
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "referencia",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 100
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "pago_pedido": {
+    "key": "pago_pedido_id",
+    "columns": [
+      {
+        "name": "pago_pedido_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "pedido_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "pedido_id",
+          "target": "pedido",
+          "key": "pedido_id"
+        }
+      },
+      {
+        "name": "fecha_pago",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "monto",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "metodo",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 40
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'confirmado'::character varying",
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "referencia",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 100
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "pedido": {
+    "key": "pedido_id",
+    "columns": [
+      {
+        "name": "pedido_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "cliente_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "cliente_id",
+          "target": "cliente",
+          "key": "cliente_id"
+        }
+      },
+      {
+        "name": "fecha_pedido",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "fecha_confirmacion",
+        "type": "timestamp with time zone",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'borrador'::character varying",
+        "readonly": false,
+        "max": 24
+      },
+      {
+        "name": "tipo",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'venta'::character varying",
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "direccion_entrega",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 250
+      },
+      {
+        "name": "ciudad_entrega",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 80
+      },
+      {
+        "name": "costo_envio_cobrado",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "envio_aplica_iva",
+        "type": "boolean",
+        "nullable": false,
+        "default": "false",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "envio_porcentaje_iva",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas_venta",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "fecha_actualizacion",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "envio_tratamiento_iva",
+        "type": "text",
+        "nullable": false,
+        "default": "'no_objeto'::text",
+        "readonly": false,
+        "max": null,
+        "options": [
+          "gravado",
+          "tarifa_0",
+          "exento",
+          "no_objeto"
+        ]
+      },
+      {
+        "name": "envio_motivo_tributario",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "envio_fecha_tributaria",
+        "type": "date",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "envio_codigo_tarifa",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "periodo_iva": {
+    "key": "periodo_iva_id",
+    "columns": [
+      {
+        "name": "periodo_iva_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "fecha_inicio",
+        "type": "date",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "fecha_fin",
+        "type": "date",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "periodicidad",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 12
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'abierto'::character varying",
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "factor_proporcionalidad",
+        "type": "numeric",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "saldo_credito_anterior",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "ajustes_credito",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "proveedor": {
+    "key": "proveedor_id",
+    "columns": [
+      {
+        "name": "proveedor_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "nombre_legal",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 180
+      },
+      {
+        "name": "nombre_comercial",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 180
+      },
+      {
+        "name": "ruc",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 13
+      },
+      {
+        "name": "telefono",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 30
+      },
+      {
+        "name": "direccion",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "activo",
+        "type": "boolean",
+        "nullable": false,
+        "default": "true",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "recepcion_costura": {
+    "key": "recepcion_id",
+    "columns": [
+      {
+        "name": "recepcion_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "encargo_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "encargo_id",
+          "target": "encargo_costura",
+          "key": "encargo_id"
+        }
+      },
+      {
+        "name": "fecha_recepcion",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "reembolso": {
+    "key": "reembolso_id",
+    "columns": [
+      {
+        "name": "reembolso_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "pedido_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "pedido_id",
+          "target": "pedido",
+          "key": "pedido_id"
+        }
+      },
+      {
+        "name": "devolucion_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "devolucion_id",
+          "target": "devolucion_pedido",
+          "key": "devolucion_id"
+        }
+      },
+      {
+        "name": "fecha_reembolso",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "monto",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "metodo",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 40
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'pendiente'::character varying",
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "referencia",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 100
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "reserva_producto": {
+    "key": "reserva_id",
+    "columns": [
+      {
+        "name": "reserva_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "detalle_pedido_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "detalle_pedido_id",
+          "target": "detalle_pedido",
+          "key": "detalle_pedido_id"
+        }
+      },
+      {
+        "name": "lote_producto_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "lote_producto_id",
+          "target": "lote_producto",
+          "key": "lote_producto_id"
+        }
+      },
+      {
+        "name": "cantidad",
+        "type": "integer",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'activa'::character varying",
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "fecha",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "now()",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "retencion_iva": {
+    "key": "retencion_id",
+    "columns": [
+      {
+        "name": "retencion_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "tipo",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 12
+      },
+      {
+        "name": "compra_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "compra_id",
+          "target": "compra",
+          "key": "compra_id"
+        }
+      },
+      {
+        "name": "comprobante_venta_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "comprobante_venta_id",
+          "target": "comprobante_venta",
+          "key": "comprobante_venta_id"
+        }
+      },
+      {
+        "name": "periodo_iva_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "periodo_iva_id",
+          "target": "periodo_iva",
+          "key": "periodo_iva_id"
+        }
+      },
+      {
+        "name": "fecha_emision",
+        "type": "date",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "numero_comprobante",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 30
+      },
+      {
+        "name": "clave_acceso",
+        "type": "character",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 49
+      },
+      {
+        "name": "monto_retencion",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "estado",
+        "type": "character varying",
+        "nullable": false,
+        "default": "'pendiente'::character varying",
+        "readonly": false,
+        "max": 15
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "talla": {
+    "key": "talla_id",
+    "columns": [
+      {
+        "name": "talla_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "nombre",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "orden",
+        "type": "smallint",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "tarifa_iva_vigencia": {
+    "key": "tarifa_iva_id",
+    "columns": [
+      {
+        "name": "tarifa_iva_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "codigo_tarifa",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 30
+      },
+      {
+        "name": "porcentaje",
+        "type": "numeric",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "vigente_desde",
+        "type": "date",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "vigente_hasta",
+        "type": "date",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "sustento_normativo",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "notas",
+        "type": "text",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "tela": {
+    "key": "tela_id",
+    "columns": [
+      {
+        "name": "tela_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "nombre",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 100
+      },
+      {
+        "name": "composicion",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 180
+      },
+      {
+        "name": "color_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "color_id",
+          "target": "color",
+          "key": "color_id"
+        }
+      },
+      {
+        "name": "ancho_cm",
+        "type": "numeric",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "codigo",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 60
+      },
+      {
+        "name": "activa",
+        "type": "boolean",
+        "nullable": false,
+        "default": "true",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "tipo_gasto": {
+    "key": "tipo_gasto_id",
+    "columns": [
+      {
+        "name": "tipo_gasto_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "nombre",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 80
+      },
+      {
+        "name": "descripcion",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 250
+      },
+      {
+        "name": "activo",
+        "type": "boolean",
+        "nullable": false,
+        "default": "true",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "ubicacion_tela": {
+    "key": "ubicacion_id",
+    "columns": [
+      {
+        "name": "ubicacion_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "nombre",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 120
+      },
+      {
+        "name": "tipo",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 20
+      },
+      {
+        "name": "costurera_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "costurera_id",
+          "target": "costurera",
+          "key": "costurera_id"
+        }
+      },
+      {
+        "name": "activa",
+        "type": "boolean",
+        "nullable": false,
+        "default": "true",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      }
+    ]
+  },
+  "variante_articulo": {
+    "key": "variante_id",
+    "columns": [
+      {
+        "name": "variante_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "articulo_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "articulo_id",
+          "target": "articulo",
+          "key": "articulo_id"
+        }
+      },
+      {
+        "name": "color_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "color_id",
+          "target": "color",
+          "key": "color_id"
+        }
+      },
+      {
+        "name": "talla_id",
+        "type": "bigint",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "talla_id",
+          "target": "talla",
+          "key": "talla_id"
+        }
+      },
+      {
+        "name": "sku",
+        "type": "character varying",
+        "nullable": false,
+        "default": null,
+        "readonly": false,
+        "max": 60
+      },
+      {
+        "name": "activo",
+        "type": "boolean",
+        "nullable": false,
+        "default": "true",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "registrado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "registrado_por",
+        "type": "uuid",
+        "nullable": true,
+        "default": null,
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "actualizado_en",
+        "type": "timestamp with time zone",
+        "nullable": false,
+        "default": "clock_timestamp()",
+        "readonly": true,
+        "max": null
+      },
+      {
+        "name": "variante_id",
+        "readonly": true
+      },
+      {
+        "name": "articulo_id",
+        "readonly": true
+      },
+      {
+        "name": "color_id",
+        "readonly": true
+      },
+      {
+        "name": "talla_id",
+        "readonly": true
+      },
+      {
+        "name": "sku",
+        "readonly": true
+      },
+      {
+        "name": "activo",
+        "readonly": true
+      },
+      {
+        "name": "registrado_en",
+        "readonly": true
+      },
+      {
+        "name": "registrado_por",
+        "readonly": true
+      },
+      {
+        "name": "actualizado_en",
+        "readonly": true
+      }
+    ]
+  },
+  "v_caja_diaria": {
+    "view": true,
+    "columns": [
+      {
+        "name": "dia",
+        "readonly": true
+      },
+      {
+        "name": "entradas",
+        "readonly": true
+      },
+      {
+        "name": "salidas",
+        "readonly": true
+      },
+      {
+        "name": "flujo_neto",
+        "readonly": true
+      }
+    ]
+  },
+  "v_costo_compra_tela": {
+    "view": true,
+    "columns": [
+      {
+        "name": "detalle_compra_id",
+        "readonly": true
+      },
+      {
+        "name": "compra_id",
+        "readonly": true
+      },
+      {
+        "name": "tela_id",
+        "readonly": true
+      },
+      {
+        "name": "metros",
+        "readonly": true
+      },
+      {
+        "name": "precio_metro_sin_iva",
+        "readonly": true
+      },
+      {
+        "name": "precio_metro_con_iva",
+        "readonly": true
+      },
+      {
+        "name": "iva_facturado",
+        "readonly": true
+      },
+      {
+        "name": "iva_credito_aprobado",
+        "readonly": true
+      },
+      {
+        "name": "costo_inventariable_metro_estimado",
+        "readonly": true
+      },
+      {
+        "name": "estado_costo",
+        "readonly": true
+      }
+    ]
+  },
+  "v_cumplimiento_detalle_pedido": {
+    "view": true,
+    "columns": [
+      {
+        "name": "detalle_pedido_id",
+        "readonly": true
+      },
+      {
+        "name": "pedido_id",
+        "readonly": true
+      },
+      {
+        "name": "variante_id",
+        "readonly": true
+      },
+      {
+        "name": "sku_vendido",
+        "readonly": true
+      },
+      {
+        "name": "descripcion_vendida",
+        "readonly": true
+      },
+      {
+        "name": "cantidad_original",
+        "readonly": true
+      },
+      {
+        "name": "cantidad_cancelada",
+        "readonly": true
+      },
+      {
+        "name": "cantidad_comprometida",
+        "readonly": true
+      },
+      {
+        "name": "cantidad_despachada",
+        "readonly": true
+      },
+      {
+        "name": "cantidad_entregada",
+        "readonly": true
+      },
+      {
+        "name": "pendiente_despacho",
+        "readonly": true
+      },
+      {
+        "name": "despachado_no_entregado",
+        "readonly": true
+      },
+      {
+        "name": "pendiente_entrega",
+        "readonly": true
+      },
+      {
+        "name": "estado_entrega_linea",
+        "readonly": true
+      }
+    ]
+  },
+  "v_estado_cuenta_pedido": {
+    "view": true,
+    "columns": [
+      {
+        "name": "pedido_id",
+        "readonly": true
+      },
+      {
+        "name": "cliente_id",
+        "readonly": true
+      },
+      {
+        "name": "estado",
+        "readonly": true
+      },
+      {
+        "name": "total_neto_pedido",
+        "readonly": true
+      },
+      {
+        "name": "dinero_recibido",
+        "readonly": true
+      },
+      {
+        "name": "dinero_reembolsado",
+        "readonly": true
+      }
+    ]
+  },
+  "v_estado_entrega_pedido": {
+    "view": true,
+    "columns": [
+      {
+        "name": "pedido_id",
+        "readonly": true
+      },
+      {
+        "name": "cliente_id",
+        "readonly": true
+      },
+      {
+        "name": "fecha_pedido",
+        "readonly": true
+      },
+      {
+        "name": "estado_comercial",
+        "readonly": true
+      },
+      {
+        "name": "unidades_solicitadas",
+        "readonly": true
+      },
+      {
+        "name": "unidades_canceladas",
+        "readonly": true
+      },
+      {
+        "name": "unidades_por_cumplir",
+        "readonly": true
+      },
+      {
+        "name": "unidades_despachadas",
+        "readonly": true
+      },
+      {
+        "name": "unidades_entregadas",
+        "readonly": true
+      },
+      {
+        "name": "unidades_por_despachar",
+        "readonly": true
+      },
+      {
+        "name": "unidades_en_transito",
+        "readonly": true
+      },
+      {
+        "name": "unidades_pendientes_entrega",
+        "readonly": true
+      },
+      {
+        "name": "estado_entrega",
+        "readonly": true
+      }
+    ]
+  },
+  "v_eventos_margen": {
+    "view": true,
+    "columns": [
+      {
+        "name": "tipo",
+        "readonly": true
+      },
+      {
+        "name": "fecha",
+        "readonly": true
+      },
+      {
+        "name": "pedido_id",
+        "readonly": true
+      },
+      {
+        "name": "detalle_pedido_id",
+        "readonly": true
+      },
+      {
+        "name": "variante_id",
+        "readonly": true
+      },
+      {
+        "name": "lote_producto_id",
+        "readonly": true
+      },
+      {
+        "name": "detalle_envio_id",
+        "readonly": true
+      },
+      {
+        "name": "ingreso_sin_iva",
+        "readonly": true
+      },
+      {
+        "name": "costo",
+        "readonly": true
+      },
+      {
+        "name": "costo_finalizado",
+        "readonly": true
+      }
+    ]
+  },
+  "v_existencia_tela": {
+    "view": true,
+    "columns": [
+      {
+        "name": "lote_tela_id",
+        "readonly": true
+      },
+      {
+        "name": "tela_id",
+        "readonly": true
+      },
+      {
+        "name": "ubicacion_id",
+        "readonly": true
+      },
+      {
+        "name": "ubicacion",
+        "readonly": true
+      },
+      {
+        "name": "metros_disponibles",
+        "readonly": true
+      }
+    ]
+  },
+  "v_margen_detalle_envio": {
+    "view": true,
+    "columns": [
+      {
+        "name": "detalle_envio_id",
+        "readonly": true
+      },
+      {
+        "name": "pedido_id",
+        "readonly": true
+      },
+      {
+        "name": "detalle_pedido_id",
+        "readonly": true
+      },
+      {
+        "name": "variante_id",
+        "readonly": true
+      },
+      {
+        "name": "lote_producto_id",
+        "readonly": true
+      },
+      {
+        "name": "fecha",
+        "readonly": true
+      },
+      {
+        "name": "ingreso_sin_iva",
+        "readonly": true
+      },
+      {
+        "name": "costo_fabricacion",
+        "readonly": true
+      },
+      {
+        "name": "margen_bruto_predevoluciones",
+        "readonly": true
+      },
+      {
+        "name": "costo_finalizado",
+        "readonly": true
+      }
+    ]
+  },
+  "v_margen_diario": {
+    "view": true,
+    "columns": [
+      {
+        "name": "dia",
+        "readonly": true
+      },
+      {
+        "name": "ingreso_sin_iva",
+        "readonly": true
+      },
+      {
+        "name": "costo",
+        "readonly": true
+      },
+      {
+        "name": "margen_prendas",
+        "readonly": true
+      },
+      {
+        "name": "costo_finalizado",
+        "readonly": true
+      }
+    ]
+  },
+  "v_margen_neto_articulo": {
+    "view": true,
+    "columns": [
+      {
+        "name": "pedido_id",
+        "readonly": true
+      },
+      {
+        "name": "detalle_pedido_id",
+        "readonly": true
+      },
+      {
+        "name": "variante_id",
+        "readonly": true
+      },
+      {
+        "name": "ingreso_neto_sin_iva",
+        "readonly": true
+      },
+      {
+        "name": "costo_neto_producto",
+        "readonly": true
+      },
+      {
+        "name": "margen_neto_sin_envio",
+        "readonly": true
+      },
+      {
+        "name": "costo_finalizado",
+        "readonly": true
+      }
+    ]
+  },
+  "v_pedidos_entregados": {
+    "view": true,
+    "columns": [
+      {
+        "name": "pedido_id",
+        "readonly": true
+      },
+      {
+        "name": "cliente_id",
+        "readonly": true
+      },
+      {
+        "name": "fecha_pedido",
+        "readonly": true
+      },
+      {
+        "name": "estado_comercial",
+        "readonly": true
+      },
+      {
+        "name": "unidades_solicitadas",
+        "readonly": true
+      },
+      {
+        "name": "unidades_canceladas",
+        "readonly": true
+      },
+      {
+        "name": "unidades_por_cumplir",
+        "readonly": true
+      },
+      {
+        "name": "unidades_despachadas",
+        "readonly": true
+      },
+      {
+        "name": "unidades_entregadas",
+        "readonly": true
+      },
+      {
+        "name": "unidades_por_despachar",
+        "readonly": true
+      },
+      {
+        "name": "unidades_en_transito",
+        "readonly": true
+      },
+      {
+        "name": "unidades_pendientes_entrega",
+        "readonly": true
+      },
+      {
+        "name": "estado_entrega",
+        "readonly": true
+      },
+      {
+        "name": "nombre_cliente",
+        "readonly": true
+      }
+    ]
+  },
+  "v_pedidos_por_entregar": {
+    "view": true,
+    "columns": [
+      {
+        "name": "pedido_id",
+        "readonly": true
+      },
+      {
+        "name": "cliente_id",
+        "readonly": true
+      },
+      {
+        "name": "fecha_pedido",
+        "readonly": true
+      },
+      {
+        "name": "estado_comercial",
+        "readonly": true
+      },
+      {
+        "name": "unidades_solicitadas",
+        "readonly": true
+      },
+      {
+        "name": "unidades_canceladas",
+        "readonly": true
+      },
+      {
+        "name": "unidades_por_cumplir",
+        "readonly": true
+      },
+      {
+        "name": "unidades_despachadas",
+        "readonly": true
+      },
+      {
+        "name": "unidades_entregadas",
+        "readonly": true
+      },
+      {
+        "name": "unidades_por_despachar",
+        "readonly": true
+      },
+      {
+        "name": "unidades_en_transito",
+        "readonly": true
+      },
+      {
+        "name": "unidades_pendientes_entrega",
+        "readonly": true
+      },
+      {
+        "name": "estado_entrega",
+        "readonly": true
+      },
+      {
+        "name": "nombre_cliente",
+        "readonly": true
+      }
+    ]
+  },
+  "v_resultado_operativo_diario": {
+    "view": true,
+    "columns": [
+      {
+        "name": "dia",
+        "readonly": true
+      },
+      {
+        "name": "margen_prendas",
+        "readonly": true
+      },
+      {
+        "name": "resultado_envios",
+        "readonly": true
+      },
+      {
+        "name": "gastos_generales_y_mermas",
+        "readonly": true
+      },
+      {
+        "name": "resultado_operativo",
+        "readonly": true
+      },
+      {
+        "name": "costos_finalizados",
+        "readonly": true
+      }
+    ]
+  },
+  "v_resumen_iva_periodo": {
+    "view": true,
+    "columns": [
+      {
+        "name": "periodo_iva_id",
+        "readonly": true
+      },
+      {
+        "name": "fecha_inicio",
+        "readonly": true
+      },
+      {
+        "name": "fecha_fin",
+        "readonly": true
+      },
+      {
+        "name": "estado",
+        "readonly": true
+      },
+      {
+        "name": "iva_ventas_documentadas",
+        "readonly": true
+      },
+      {
+        "name": "credito_iva_compras_aprobado",
+        "readonly": true
+      },
+      {
+        "name": "iva_retenido_por_terceros",
+        "readonly": true
+      },
+      {
+        "name": "saldo_credito_anterior",
+        "readonly": true
+      },
+      {
+        "name": "ajustes_credito",
+        "readonly": true
+      }
+    ]
+  },
+  "v_saldo_costurera_encargo": {
+    "view": true,
+    "columns": [
+      {
+        "name": "encargo_id",
+        "readonly": true
+      },
+      {
+        "name": "costurera_id",
+        "readonly": true
+      },
+      {
+        "name": "nombre_completo",
+        "readonly": true
+      },
+      {
+        "name": "monto_devengado",
+        "readonly": true
+      },
+      {
+        "name": "monto_pagado",
+        "readonly": true
+      },
+      {
+        "name": "saldo_por_pagar",
+        "readonly": true
+      }
+    ]
+  },
+  "v_saldo_cuenta_cobrar": {
+    "view": true,
+    "columns": [
+      {
+        "name": "cuenta_cobrar_id",
+        "readonly": true
+      },
+      {
+        "name": "cliente_id",
+        "readonly": true
+      },
+      {
+        "name": "tercero_nombre",
+        "readonly": true
+      },
+      {
+        "name": "fecha_vencimiento",
+        "readonly": true
+      },
+      {
+        "name": "descripcion",
+        "readonly": true
+      },
+      {
+        "name": "monto_original",
+        "readonly": true
+      },
+      {
+        "name": "total_cobrado",
+        "readonly": true
+      },
+      {
+        "name": "saldo_pendiente",
+        "readonly": true
+      }
+    ]
+  },
+  "v_saldo_cuenta_pagar": {
+    "view": true,
+    "columns": [
+      {
+        "name": "cuenta_pagar_id",
+        "readonly": true
+      },
+      {
+        "name": "compra_id",
+        "readonly": true
+      },
+      {
+        "name": "proveedor_id",
+        "readonly": true
+      },
+      {
+        "name": "costurera_id",
+        "readonly": true
+      },
+      {
+        "name": "tercero_nombre",
+        "readonly": true
+      },
+      {
+        "name": "fecha_vencimiento",
+        "readonly": true
+      },
+      {
+        "name": "descripcion",
+        "readonly": true
+      },
+      {
+        "name": "monto_original",
+        "readonly": true
+      },
+      {
+        "name": "total_pagado",
+        "readonly": true
+      },
+      {
+        "name": "saldo_pendiente",
+        "readonly": true
+      }
+    ]
+  },
+  "v_saldo_pedido": {
+    "view": true,
+    "columns": [
+      {
+        "name": "pedido_id",
+        "readonly": true
+      },
+      {
+        "name": "cliente_id",
+        "readonly": true
+      },
+      {
+        "name": "estado",
+        "readonly": true
+      },
+      {
+        "name": "total_neto_pedido",
+        "readonly": true
+      },
+      {
+        "name": "dinero_recibido",
+        "readonly": true
+      },
+      {
+        "name": "dinero_reembolsado",
+        "readonly": true
+      },
+      {
+        "name": "saldo_pendiente",
+        "readonly": true
+      }
+    ]
+  },
+  "v_stock_lote_producto": {
+    "view": true,
+    "columns": [
+      {
+        "name": "lote_producto_id",
+        "readonly": true
+      },
+      {
+        "name": "variante_id",
+        "readonly": true
+      },
+      {
+        "name": "stock_fisico",
+        "readonly": true
+      },
+      {
+        "name": "stock_reservado",
+        "readonly": true
+      },
+      {
+        "name": "stock_disponible",
+        "readonly": true
+      }
+    ]
+  },
+  "v_stock_variante": {
+    "view": true,
+    "columns": [
+      {
+        "name": "variante_id",
+        "readonly": true
+      },
+      {
+        "name": "sku",
+        "readonly": true
+      },
+      {
+        "name": "stock_fisico",
+        "readonly": true
+      },
+      {
+        "name": "stock_reservado",
+        "readonly": true
+      },
+      {
+        "name": "stock_disponible",
+        "readonly": true
+      }
+    ]
+  }
+}
