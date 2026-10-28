@@ -14,9 +14,10 @@ const nav=[['inicio','Inicio',LayoutDashboard],['ventas','Ventas',ShoppingBag],[
 function App(){
  const [session,setSession]=useState(undefined),[activationError,setActivationError]=useState(null);
  const [recovery,setRecovery]=useState(/type=(recovery|invite)/.test(location.hash)||location.search.includes('recuperar=1'));
- useEffect(()=>{let live=true;const params=new URLSearchParams(location.hash.slice(1));const token_hash=params.get('token_hash');const type=params.get('type');
-  async function init(){try{if(token_hash&&['invite','recovery'].includes(type)){history.replaceState(null,'','/');const {data,error}=await supabase.auth.verifyOtp({token_hash,type});if(error)throw error;if(live){setRecovery(true);setSession(data.session);}}else{const {data,error}=await supabase.auth.getSession();if(error)throw error;if(live)setSession(data.session);}}catch(e){if(live){setActivationError(e);setSession(null);}}}
-  init();const {data}=supabase.auth.onAuthStateChange((event,s)=>{if(live){setSession(s);if(event==='PASSWORD_RECOVERY')setRecovery(true);}});return()=>{live=false;data.subscription.unsubscribe();};
+ useEffect(()=>{let live=true;
+  async function init(){const params=new URLSearchParams(location.hash.slice(1));const token_hash=params.get('token_hash');const type=params.get('type');try{if(token_hash&&['invite','recovery'].includes(type)){history.replaceState(null,'','/');const {data,error}=await supabase.auth.verifyOtp({token_hash,type});if(error)throw error;if(live){setRecovery(true);setSession(data.session);}}else{const {data,error}=await supabase.auth.getSession();if(error)throw error;if(live)setSession(data.session);}}catch(e){if(live){setActivationError(e);setSession(null);}}}
+  function activate(){if(new URLSearchParams(location.hash.slice(1)).has('token_hash')){setActivationError(null);init();}}
+  window.addEventListener('hashchange',activate);init();const {data}=supabase.auth.onAuthStateChange((event,s)=>{if(live){setSession(s);if(event==='PASSWORD_RECOVERY')setRecovery(true);}});return()=>{live=false;window.removeEventListener('hashchange',activate);data.subscription.unsubscribe();};
  },[]);
  if(session===undefined)return <div className="splash"><div className="brand">bM</div><p>Preparando tu espacio…</p></div>;
  if(activationError)return <div className="access-error"><h1>Este enlace ya no está disponible</h1><p>Puede haber vencido o haberse utilizado. Pide a un administrador que genere un enlace nuevo desde Configuración.</p><Button onClick={()=>{setActivationError(null);setRecovery(false);}}>Volver al inicio</Button></div>;

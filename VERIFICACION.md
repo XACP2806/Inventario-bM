@@ -13,6 +13,8 @@ El conjunto SQL verifica compra/traslado/consumo de tela, producción, stock his
 - Edge Function bm-admin-users publicada con validación explícita de identidad y rol administrador.
 - Cloudflare Pages inventariobm publicado. HTTPS del subdominio inventariobm.mariabonitaec.com devuelve 200.
 - El acceso autenticado al dashboard y la lectura de métricas reales se comprobaron con la cuenta Xavier.
+- Revisión visual a 390 × 844 y 1280 × 900: panel, menú, reportes y formulario de ventas. Los enlaces privados se generan desde Configuración; se verificó el formulario de contraseña de Xavier en el subdominio, sin introducir ni cambiar su contraseña.
+- El JavaScript servido por el subdominio coincide con la compilación local. Hay cabeceras CSP y la función de usuarios responde 401 sin sesión. GitHub Actions completó correctamente las pruebas y compilación del primer despliegue.
 
 ## Límites y tareas operativas
 
