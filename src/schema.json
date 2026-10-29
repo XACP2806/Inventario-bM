@@ -5588,6 +5588,10 @@
       {
         "name": "metros_disponibles",
         "readonly": true
+      },
+      {
+        "name": "tela_nombre",
+        "readonly": true
       }
     ]
   },
