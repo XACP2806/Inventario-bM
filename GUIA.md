@@ -113,6 +113,19 @@ Antes de considerar definitivos los costos, revisa el consumo real y los gastos 
 
 En todos los pasos puedes usar fechas anteriores, siempre que el período siga abierto y el historial de existencias sea coherente.
 
+## Cuando otra persona pagó la producción como regalo
+
+Usa esta opción únicamente si la persona pagó directamente al proveedor o taller y bM no debe devolverle ese dinero. No representa préstamos ni dinero recibido en la caja de bM.
+
+- **Tela:** en **Dinero → Comprar tela**, conserva los metros, importes del comprobante y costo inventariable. En **¿Cómo se pagó esta compra?** selecciona **Pagada completa por un tercero — regalo, sin devolución**, indica quién hizo el regalo y cómo pagó. La revisión muestra **Dinero que sale de bM: $0**. El proveedor queda pagado y la tela entra al inventario.
+- **Confección:** crea el encargo y recibe las camisas normalmente, manteniendo la tarifa de costura y los costos. En **Dinero → Pagar confección**, selecciona el encargo, la fecha real, el importe y **Pagado por un tercero — regalo, sin devolución**. Completa el nombre de esa persona y la forma de pago. Este pago reduce el saldo de la costurera sin restar caja de bM. No registres además el mismo pago como gasto o abono de una compra.
+- **Pagos parciales:** registra la compra inicialmente pendiente y añade cada pago desde **Dinero → Abonos a cuentas por pagar**, indicando quién lo cubrió. En confección, el botón **Pagar confección** acepta un importe por vez. Si bM y otra persona pagaron partes distintas, registra cada parte por separado, con su fecha e importe.
+- **Reportes:** el desglose por fechas muestra **Pagos cubiertos por regalos de terceros**, separado de cobros, pagos de bM y resultado operativo. En **Dinero** o **Reportes → Explorar reportes completos → Pagos regalados por terceros** puedes consultar fechas, pagadores, importes y referencias.
+
+El regalo no se cuenta como venta ni entrada de efectivo. Los costos de las prendas se conservan y siguen participando en el margen cuando se venden. No pongas costos en cero solo porque pagó otra persona. Estos registros son de gestión; no determinan por sí mismos el tratamiento tributario de la factura o del regalo.
+
+Un pago confirmado no permite cambiar retrospectivamente quién lo cubrió. Si hubo un error, anúlalo con una nota y registra el pago correcto. La anulación reabre el saldo correspondiente y retira ese regalo del reporte, sin crear una salida de caja.
+
 ## Alcance
 
 La aplicación registra y analiza el negocio. No emite ni autoriza facturas electrónicas ante el SRI. Los comprobantes emitidos por otro sistema pueden registrarse. Las copias CSV son útiles, pero no sustituyen una copia completa de la base de datos.

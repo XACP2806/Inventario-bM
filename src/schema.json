@@ -202,6 +202,26 @@
         "default": "clock_timestamp()",
         "readonly": true,
         "max": null
+      },
+      {
+        "name": "origen_fondos",
+        "type": "text",
+        "nullable": false,
+        "default": "'bm'::text",
+        "readonly": false,
+        "max": null,
+        "options": [
+          "bm",
+          "regalo_tercero"
+        ]
+      },
+      {
+        "name": "pagador_nombre",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 180
       }
     ]
   },
@@ -3903,6 +3923,26 @@
         "default": "clock_timestamp()",
         "readonly": true,
         "max": null
+      },
+      {
+        "name": "origen_fondos",
+        "type": "text",
+        "nullable": false,
+        "default": "'bm'::text",
+        "readonly": false,
+        "max": null,
+        "options": [
+          "bm",
+          "regalo_tercero"
+        ]
+      },
+      {
+        "name": "pagador_nombre",
+        "type": "character varying",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": 180
       }
     ]
   },
@@ -5650,6 +5690,51 @@
       },
       {
         "name": "costo_finalizado",
+        "readonly": true
+      }
+    ]
+  },
+  "v_pagos_regalados": {
+    "view": true,
+    "columns": [
+      {
+        "name": "fecha",
+        "readonly": true
+      },
+      {
+        "name": "pagador_nombre",
+        "readonly": true
+      },
+      {
+        "name": "destino",
+        "readonly": true
+      },
+      {
+        "name": "monto",
+        "readonly": true
+      },
+      {
+        "name": "cuenta_pagar_id",
+        "readonly": true
+      },
+      {
+        "name": "encargo_id",
+        "readonly": true
+      },
+      {
+        "name": "pago_id",
+        "readonly": true
+      },
+      {
+        "name": "referencia",
+        "readonly": true
+      },
+      {
+        "name": "notas",
+        "readonly": true
+      },
+      {
+        "name": "registrado_en",
         "readonly": true
       }
     ]

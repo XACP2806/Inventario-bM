@@ -12,7 +12,7 @@ test('formularios seleccionan registros por su clave y no duplican columnas',()=
   for(const col of resource.columns)if(col.fk)assert.equal(col.fk.key,schema[col.fk.target].key,table+'.'+col.name);
  }
  assert.equal(schema.detalle_encargo_costura.columns.find(c=>c.name==='variante_id').fk.target,'variante_articulo');
- assert.equal(Object.values(schema).filter(r=>r.view).length,20);
+ assert.equal(Object.values(schema).filter(r=>r.view).length,21);
 });
 test('CSV neutraliza fórmulas y escapa comillas',()=>assert.equal(csvText([{nombre:'=1+1',nota:'a"b'}]),'\uFEFF"nombre","nota"\r\n"\'=1+1","a""b"'));
 test('comparación conserva duración e incluye ambos extremos',()=>assert.deepEqual(previousPeriod('2024-03-01','2024-03-31'),['2024-01-30','2024-02-29']));

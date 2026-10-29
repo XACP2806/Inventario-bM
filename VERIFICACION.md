@@ -28,4 +28,10 @@ La compilación avisa de un paquete JavaScript de aproximadamente 596 kB (158 kB
 
 ## Aislamiento
 
+### Pagos regalados por terceros — 28 de octubre de 2026
+
+Se verificaron compras y confección financiadas por terceros, pago mixto parcial con dinero de bM, saldos liquidados, conservación de costos, idempotencia, pagador obligatorio en frontend y base de datos, rechazo de modificaciones a pagos confirmados, anulación y reapertura de saldo, separación en caja/panel y RLS del reporte. Pasan las nueve pruebas JavaScript, las regresiones SQL y la restauración local. La compilación y el renderizado de los formularios se comprobaron; esta verificación de formularios no es una prueba de interacción en todos los navegadores.
+
+`tests/remote-gift-smoke.sql` pasó en MB Project con el rol `authenticated`: una compra temporal quedó pagada por regalo sin alterar caja y se ejecutaron las comprobaciones diferidas. La transacción se revirtió; no se conservaron compras ni pagos ficticios.
+
 El código y la publicación son independientes de los sitios de María Bonita y bM. Los documentos originales de Downloads no se editaron. No se publican contraseñas ni enlaces privados en GitHub.

@@ -101,6 +101,8 @@ Para este negocio pequeño, las escrituras se coordinan mediante una única fila
 
 ## Verificación
 
+Los pagos de costura y abonos a cuentas por pagar admiten `origen_fondos` (`bm` o `regalo_tercero`). Un regalo exige `pagador_nombre`, liquida la obligación, no genera deuda hacia el pagador y se excluye de `v_caja_diaria`. La vista `v_pagos_regalados` y la serie `regalos` del panel lo informan por separado; no se suman a ventas, cobros o resultado operativo. Las reglas de costos, auditoría, períodos cerrados e inmutabilidad de pagos confirmados siguen vigentes. La clasificación es de gestión y no decide crédito tributario ni tratamiento contable legal del regalo.
+
 ```powershell
 npm ci
 npm run build
