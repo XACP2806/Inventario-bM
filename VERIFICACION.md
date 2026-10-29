@@ -18,7 +18,7 @@ El conjunto SQL verifica compra/traslado/consumo de tela, producción, stock his
 
 ## Límites y tareas operativas
 
-La base de negocio empieza vacía. Faltan los datos reales, configuración fiscal verificada y conciliación de existencias/costos. Los reportes son gerenciales, no estados financieros certificados ni emisión fiscal.
+La base empezó vacía en el primer despliegue y ya contiene registros reales. La configuración fiscal y la conciliación de existencias/costos requieren revisión del negocio. Los reportes son gerenciales, no estados financieros certificados ni emisión fiscal.
 
 El ensayo remoto previo de concurrencia no demostró sesiones solapadas; no se presenta como aprobado. El protocolo está en concurrencia.md. PostgreSQL embebido prueba reglas pero no concurrencia entre clientes reales. Debe completarse antes de considerar validado ese escenario.
 
@@ -35,3 +35,11 @@ Se verificaron compras y confección financiadas por terceros, pago mixto parcia
 `tests/remote-gift-smoke.sql` pasó en MB Project con el rol `authenticated`: una compra temporal quedó pagada por regalo sin alterar caja y se ejecutaron las comprobaciones diferidas. La transacción se revirtió; no se conservaron compras ni pagos ficticios.
 
 El código y la publicación son independientes de los sitios de María Bonita y bM. Los documentos originales de Downloads no se editaron. No se publican contraseñas ni enlaces privados en GitHub.
+
+## Varias telas en una factura — 29 de octubre de 2026
+
+El formulario permite crear una compra o añadir otra tela a una factura existente. Conserva proveedor, fecha y número; añade un detalle, lote y entrada de tela, incrementa la misma cuenta y registra únicamente el pago de esa línea. Verifica que el importe previo de la cuenta corresponda a sus detalles. Los regalos siguen separados de caja.
+
+Se añadió una precondición opcional de valores esperados al gateway existente, bajo su bloqueo de escritores y con la misma autorización, auditoría, validación diferida e idempotencia. Las revisiones desactualizadas abortan la operación completa y piden revisar de nuevo. Esto no sustituye el ensayo pendiente de sesiones realmente solapadas.
+
+Pasan las diez pruebas JavaScript, regresiones SQL, restauración local y compilación. Se comprobó el renderizado del formulario y visibilidad de campos de compra existente/regalo. El ensayo tests/remote-multi-fabric-smoke.sql pasó en MB Project como authenticated: dos líneas en una compra, total y regalo conciliados, reintento sin duplicados y rechazo con reversión completa de una revisión desactualizada. La transacción de prueba se revirtió. No se modificaron los registros reales del usuario.

@@ -117,7 +117,7 @@ En todos los pasos puedes usar fechas anteriores, siempre que el período siga a
 
 Usa esta opción únicamente si la persona pagó directamente al proveedor o taller y bM no debe devolverle ese dinero. No representa préstamos ni dinero recibido en la caja de bM.
 
-- **Tela:** en **Dinero → Comprar tela**, conserva los metros, importes del comprobante y costo inventariable. En **¿Cómo se pagó esta compra?** selecciona **Pagada completa por un tercero — regalo, sin devolución**, indica quién hizo el regalo y cómo pagó. La revisión muestra **Dinero que sale de bM: $0**. El proveedor queda pagado y la tela entra al inventario.
+- **Tela:** en **Dinero → Comprar tela**, conserva los metros, importes del comprobante y costo inventariable. En **¿Cómo se pagó el importe de esta tela?** selecciona **Pagada completa por un tercero — regalo, sin devolución**, indica quién hizo el regalo y cómo pagó. La revisión muestra **Dinero que sale de bM: $0**. El proveedor queda pagado y la tela entra al inventario.
 - **Confección:** crea el encargo y recibe las camisas normalmente, manteniendo la tarifa de costura y los costos. En **Dinero → Pagar confección**, selecciona el encargo, la fecha real, el importe y **Pagado por un tercero — regalo, sin devolución**. Completa el nombre de esa persona y la forma de pago. Este pago reduce el saldo de la costurera sin restar caja de bM. No registres además el mismo pago como gasto o abono de una compra.
 - **Pagos parciales:** registra la compra inicialmente pendiente y añade cada pago desde **Dinero → Abonos a cuentas por pagar**, indicando quién lo cubrió. En confección, el botón **Pagar confección** acepta un importe por vez. Si bM y otra persona pagaron partes distintas, registra cada parte por separado, con su fecha e importe.
 - **Reportes:** el desglose por fechas muestra **Pagos cubiertos por regalos de terceros**, separado de cobros, pagos de bM y resultado operativo. En **Dinero** o **Reportes → Explorar reportes completos → Pagos regalados por terceros** puedes consultar fechas, pagadores, importes y referencias.
@@ -129,3 +129,13 @@ Un pago confirmado no permite cambiar retrospectivamente quién lo cubrió. Si h
 ## Alcance
 
 La aplicación registra y analiza el negocio. No emite ni autoriza facturas electrónicas ante el SRI. Los comprobantes emitidos por otro sistema pueden registrarse. Las copias CSV son útiles, pero no sustituyen una copia completa de la base de datos.
+
+## Varias telas en la misma factura
+
+1. En **Dinero → Comprar tela**, registra la primera tela con **Nueva compra**.
+2. Para otro color de esa factura, abre el mismo formulario y elige **Añadir tela a una compra existente**. Selecciona la factura ya registrada. Su proveedor, número y fecha se conservan.
+3. Selecciona la nueva tela y su ubicación. Escribe solo sus metros, precio por metro, IVA correspondiente a esa tela y costo inventariable. No repitas el IVA total de toda la factura en cada color.
+4. Indica cómo se pagó únicamente ese importe. Si lo regaló otra persona, selecciona el regalo y escribe su nombre. La revisión muestra el nuevo total acumulado de la compra y el pago de la tela que se añade.
+5. Confirma. Se crea un detalle y un lote para esa tela; la factura y la cuenta son las mismas. Repite por cada color que falte.
+
+No vuelvas a añadir una tela que ya guardaste, ni cambies el número de factura para evitar el aviso de duplicado. Si otro usuario cambia la cuenta mientras revisas, el guardado se detiene: pulsa **Corregir** y vuelve a revisar para cargar el total actualizado. Si el importe de la cuenta no coincide con los detalles registrados, concílialos primero para evitar sumarlo dos veces.
