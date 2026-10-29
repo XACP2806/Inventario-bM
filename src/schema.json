@@ -53,7 +53,12 @@
         "nullable": false,
         "default": "'confirmado'::character varying",
         "readonly": false,
-        "max": 15
+        "max": 15,
+        "options": [
+          "pendiente",
+          "confirmado",
+          "anulado"
+        ]
       },
       {
         "name": "referencia",
@@ -151,7 +156,12 @@
         "nullable": false,
         "default": "'confirmado'::character varying",
         "readonly": false,
-        "max": 15
+        "max": 15,
+        "options": [
+          "pendiente",
+          "confirmado",
+          "anulado"
+        ]
       },
       {
         "name": "referencia",
@@ -217,7 +227,11 @@
         "nullable": false,
         "default": "'prenda'::character varying",
         "readonly": false,
-        "max": 10
+        "max": 10,
+        "options": [
+          "prenda",
+          "envio"
+        ]
       },
       {
         "name": "ajuste_id",
@@ -754,7 +768,13 @@
         "nullable": false,
         "default": "'factura'::character varying",
         "readonly": false,
-        "max": 25
+        "max": 25,
+        "options": [
+          "factura",
+          "liquidacion_compra",
+          "otro",
+          "sin_comprobante"
+        ]
       },
       {
         "name": "numero_factura",
@@ -778,7 +798,13 @@
         "nullable": false,
         "default": "'pendiente'::character varying",
         "readonly": false,
-        "max": 25
+        "max": 25,
+        "options": [
+          "pendiente",
+          "verificado",
+          "observado",
+          "sin_comprobante"
+        ]
       },
       {
         "name": "comprobante_archivo_url",
@@ -860,7 +886,12 @@
         "nullable": false,
         "default": "'factura'::character varying",
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "factura",
+          "nota_credito",
+          "nota_debito"
+        ]
       },
       {
         "name": "numero_comprobante",
@@ -884,7 +915,13 @@
         "nullable": false,
         "default": "'pendiente'::character varying",
         "readonly": false,
-        "max": 25
+        "max": 25,
+        "options": [
+          "pendiente",
+          "autorizado",
+          "rechazado",
+          "anulado"
+        ]
       },
       {
         "name": "subtotal_sin_iva",
@@ -990,7 +1027,11 @@
         "nullable": false,
         "default": "'persona_natural'::character varying",
         "readonly": false,
-        "max": 25
+        "max": 25,
+        "options": [
+          "persona_natural",
+          "sociedad"
+        ]
       },
       {
         "name": "obligado_a_llevar_contabilidad",
@@ -1273,7 +1314,12 @@
         "nullable": false,
         "default": "'pendiente'::character varying",
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "pendiente",
+          "aprobado",
+          "rechazado"
+        ]
       },
       {
         "name": "tratamiento",
@@ -1281,7 +1327,13 @@
         "nullable": false,
         "default": "'sin_evaluar'::character varying",
         "readonly": false,
-        "max": 25
+        "max": 25,
+        "options": [
+          "sin_evaluar",
+          "total",
+          "proporcional",
+          "no_creditable"
+        ]
       },
       {
         "name": "iva_elegible",
@@ -1419,7 +1471,11 @@
         "nullable": false,
         "default": "'vigente'::character varying",
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "vigente",
+          "anulada"
+        ]
       },
       {
         "name": "notas",
@@ -1551,7 +1607,11 @@
         "nullable": false,
         "default": "'vigente'::character varying",
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "vigente",
+          "anulada"
+        ]
       },
       {
         "name": "notas",
@@ -1617,7 +1677,13 @@
         "nullable": false,
         "default": null,
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "tela",
+          "insumo",
+          "servicio",
+          "otro"
+        ]
       },
       {
         "name": "tela_id",
@@ -1789,7 +1855,13 @@
         "nullable": false,
         "default": null,
         "readonly": false,
-        "max": 24
+        "max": 24,
+        "options": [
+          "nuevo",
+          "usado",
+          "defectuoso",
+          "no_recibido"
+        ]
       },
       {
         "name": "reingresa_inventario",
@@ -2271,7 +2343,11 @@
         "nullable": false,
         "default": "'venta'::character varying",
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "venta",
+          "reemplazo"
+        ]
       },
       {
         "name": "descripcion_vendida",
@@ -2399,7 +2475,14 @@
         "nullable": false,
         "default": "'por_definir'::character varying",
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "por_definir",
+          "gravado",
+          "tarifa_0",
+          "exento",
+          "no_objeto"
+        ]
       },
       {
         "name": "cantidad_cancelada",
@@ -2592,7 +2675,12 @@
         "nullable": false,
         "default": null,
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "devolucion",
+          "cambio",
+          "mixto"
+        ]
       },
       {
         "name": "estado",
@@ -2600,7 +2688,15 @@
         "nullable": false,
         "default": "'solicitada'::character varying",
         "readonly": false,
-        "max": 24
+        "max": 24,
+        "options": [
+          "solicitada",
+          "recibida",
+          "aprobada",
+          "resuelta",
+          "rechazada",
+          "cancelada"
+        ]
       },
       {
         "name": "motivo",
@@ -2698,7 +2794,15 @@
         "nullable": false,
         "default": "'pendiente'::character varying",
         "readonly": false,
-        "max": 24
+        "max": 24,
+        "options": [
+          "pendiente",
+          "en_proceso",
+          "parcial",
+          "recibido",
+          "cerrado",
+          "cancelado"
+        ]
       },
       {
         "name": "notas",
@@ -2788,7 +2892,12 @@
         "nullable": false,
         "default": "'borrador'::character varying",
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "borrador",
+          "confirmada",
+          "anulada"
+        ]
       },
       {
         "name": "observaciones",
@@ -2902,7 +3011,15 @@
         "nullable": false,
         "default": "'preparando'::character varying",
         "readonly": false,
-        "max": 24
+        "max": 24,
+        "options": [
+          "preparando",
+          "despachado",
+          "parcialmente_entregado",
+          "entregado",
+          "incidencia",
+          "cancelado"
+        ]
       },
       {
         "name": "costo_real_transportadora",
@@ -2926,7 +3043,13 @@
         "nullable": false,
         "default": "'transportadora'::character varying",
         "readonly": false,
-        "max": 25
+        "max": 25,
+        "options": [
+          "transportadora",
+          "mensajeria",
+          "entrega_personal",
+          "retiro"
+        ]
       },
       {
         "name": "registrado_en",
@@ -3375,7 +3498,15 @@
         "nullable": false,
         "default": null,
         "readonly": false,
-        "max": 24
+        "max": 24,
+        "options": [
+          "produccion",
+          "venta",
+          "devolucion",
+          "ajuste_positivo",
+          "ajuste_negativo",
+          "merma"
+        ]
       },
       {
         "name": "cantidad_delta",
@@ -3522,7 +3653,16 @@
         "nullable": false,
         "default": null,
         "readonly": false,
-        "max": 22
+        "max": 22,
+        "options": [
+          "compra",
+          "transferencia",
+          "consumo",
+          "devolucion_tela",
+          "ajuste_entrada",
+          "ajuste_salida",
+          "merma"
+        ]
       },
       {
         "name": "metros",
@@ -3620,7 +3760,14 @@
         "nullable": false,
         "default": "'borrador'::character varying",
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "borrador",
+          "enviada",
+          "parcial",
+          "recibida",
+          "cancelada"
+        ]
       },
       {
         "name": "notas",
@@ -3710,7 +3857,12 @@
         "nullable": false,
         "default": "'confirmado'::character varying",
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "pendiente",
+          "confirmado",
+          "anulado"
+        ]
       },
       {
         "name": "referencia",
@@ -3808,7 +3960,12 @@
         "nullable": false,
         "default": "'confirmado'::character varying",
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "pendiente",
+          "confirmado",
+          "anulado"
+        ]
       },
       {
         "name": "referencia",
@@ -3898,7 +4055,16 @@
         "nullable": false,
         "default": "'borrador'::character varying",
         "readonly": false,
-        "max": 24
+        "max": 24,
+        "options": [
+          "borrador",
+          "confirmado",
+          "en_produccion",
+          "parcialmente_enviado",
+          "enviado",
+          "completado",
+          "cancelado"
+        ]
       },
       {
         "name": "tipo",
@@ -3906,7 +4072,12 @@
         "nullable": false,
         "default": "'venta'::character varying",
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "venta",
+          "mixto",
+          "bajo_pedido"
+        ]
       },
       {
         "name": "direccion_entrega",
@@ -4061,7 +4232,11 @@
         "nullable": false,
         "default": null,
         "readonly": false,
-        "max": 12
+        "max": 12,
+        "options": [
+          "mensual",
+          "semestral"
+        ]
       },
       {
         "name": "estado",
@@ -4069,7 +4244,12 @@
         "nullable": false,
         "default": "'abierto'::character varying",
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "abierto",
+          "revisado",
+          "declarado"
+        ]
       },
       {
         "name": "factor_proporcionalidad",
@@ -4347,7 +4527,12 @@
         "nullable": false,
         "default": "'pendiente'::character varying",
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "pendiente",
+          "completado",
+          "anulado"
+        ]
       },
       {
         "name": "referencia",
@@ -4442,7 +4627,12 @@
         "nullable": false,
         "default": "'activa'::character varying",
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "activa",
+          "consumida",
+          "liberada"
+        ]
       },
       {
         "name": "fecha",
@@ -4495,7 +4685,11 @@
         "nullable": false,
         "default": null,
         "readonly": false,
-        "max": 12
+        "max": 12,
+        "options": [
+          "recibida",
+          "emitida"
+        ]
       },
       {
         "name": "compra_id",
@@ -4574,7 +4768,12 @@
         "nullable": false,
         "default": "'pendiente'::character varying",
         "readonly": false,
-        "max": 15
+        "max": 15,
+        "options": [
+          "pendiente",
+          "validada",
+          "anulada"
+        ]
       },
       {
         "name": "notas",
@@ -4924,7 +5123,11 @@
         "nullable": false,
         "default": null,
         "readonly": false,
-        "max": 20
+        "max": 20,
+        "options": [
+          "bodega",
+          "costurera"
+        ]
       },
       {
         "name": "costurera_id",

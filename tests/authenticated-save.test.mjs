@@ -1,6 +1,20 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {database} from '../scripts/schema.mjs';
+import fs from 'node:fs';
+import {validateLocation} from '../src/record-rules.mjs';
+
+test('ubicaciones ofrecen tipos válidos y exigen la relación correspondiente',()=>{
+ const schema=JSON.parse(fs.readFileSync('src/schema.json','utf8'));
+ assert.deepEqual(schema.ubicacion_tela.columns.find(c=>c.name==='tipo').options,['bodega','costurera']);
+ assert.equal(schema.envio.columns.find(c=>c.name==='transportadora').options,undefined);
+ assert.ok(schema.envio.columns.find(c=>c.name==='modalidad_entrega').options.includes('transportadora'));
+ assert.doesNotThrow(()=>validateLocation({tipo:'bodega'}));
+ assert.doesNotThrow(()=>validateLocation({tipo:'costurera',costurera_id:'@paso1'}));
+ assert.throws(()=>validateLocation({tipo:'Costurera',costurera_id:'3'}),/Selecciona Bodega/);
+ assert.throws(()=>validateLocation({tipo:'costurera'}),/Selecciona la costurera/);
+ assert.throws(()=>validateLocation({tipo:'bodega',costurera_id:'3'}),/no debe estar vinculada/);
+});
 
 test('guardado autenticado confirma la transacción sin permisos internos',async()=>{
  const db=await database();
@@ -22,6 +36,18 @@ test('guardado autenticado confirma la transacción sin permisos internos',async
   // Simulate PostgREST completing the transaction after the RPC has returned.
   await db.exec('SET CONSTRAINTS bm.z_integridad IMMEDIATE; COMMIT;');
   assert.equal((await db.query('SELECT count(*)::int n FROM bm.proveedor')).rows[0].n,1);
+  const locations=[
+   {tabla:'costurera',accion:'insertar',ref:'taller',datos:{nombre_completo:'Costurera de prueba'}},
+   {tabla:'ubicacion_tela',accion:'insertar',datos:{nombre:'Taller de prueba',tipo:'costurera',costurera_id:{$ref:'taller'}}},
+   {tabla:'ubicacion_tela',accion:'insertar',datos:{nombre:'Bodega de prueba',tipo:'bodega'}}
+  ];
+  await db.exec('BEGIN');
+  await db.query('SELECT public.bm_registrar_operacion($1,$2,$3)',[crypto.randomUUID(),JSON.stringify(locations),'Registrar ubicaciones']);
+  await db.exec('SET CONSTRAINTS bm.z_integridad IMMEDIATE; COMMIT;');
+  const stored=(await db.query('SELECT tipo,costurera_id FROM bm.ubicacion_tela ORDER BY tipo')).rows;
+  assert.equal(stored.length,2);
+  assert.equal(stored[0].costurera_id,null);
+  assert.ok(stored[1].costurera_id);
   await db.exec('BEGIN');
   await db.query('SELECT public.bm_registrar_operacion($1,$2,$3)',[id,actions,'Prueba de proveedor']);
   await db.exec('COMMIT');
