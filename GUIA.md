@@ -149,3 +149,13 @@ Recibir camisas actualiza ese avance automáticamente; no vuelvas a registrar un
 El estado general del encargo se administra por separado en Encargos de producción. Recibido indica que la entrega terminó; Cerrado se reserva para la revisión y conciliación de la producción y sus costos. El avance mostrado en la tabla no modifica ese estado ni finaliza costos por sí solo.
 
 Para una nueva tanda de camisas, usa Nuevo encargo. Reutiliza los productos, variantes y taller del catálogo, pero conserva los encargos y sus detalles anteriores como historial: no reemplaces sus fechas o cantidades para una producción futura.
+
+## Saldo acumulado y envíos
+
+**Inicio, Reportes y Dinero → Saldo de dinero registrado** suma todos los cobros registrados y resta pagos y reembolsos confirmados hasta hoy. Parte de $0; no cambia con el filtro del período. Los regalos pagados directamente por terceros no son una entrada ni una salida de caja de bM. No incluye movimientos sin registrar ni es un saldo bancario consultado automáticamente.
+
+**Dinero generado en el período** muestra cobros menos pagos de las fechas seleccionadas. **Resultado operativo** conserva los costos de las prendas, incluso cuando los pagó un tercero; por eso puede diferir del dinero acumulado.
+
+Para registrar un envío pagado por bM cuyo costo no se haya registrado en un despacho: crea una categoría **Envíos** en **Dinero → Categorías de gastos → Nuevo registro**, y luego usa **Registrar gasto** con esa categoría, fecha, descripción, importe y destinatario del pago. Marca **Sí; lo pagué ahora** solamente si ya se pagó; así afecta resultado y caja juntos.
+
+Si ya anotaste **Costo real del transporte** en un despacho, ese importe ya se resta del resultado operativo: no lo registres otra vez como gasto. Su pago se documenta en **Otras cuentas por pagar** y **Abonos a cuentas por pagar**, reutilizando la cuenta si ya existe. Una cuenta por pagar por sí sola no mueve dinero. No vuelvas a despachar una camisa que ya fue entregada para añadir un costo de transporte.
