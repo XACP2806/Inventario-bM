@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {database} from '../scripts/schema.mjs';
+import {workflowActions} from '../src/workflows.mjs';
+import {tableColumns,exportTableRows} from '../src/table-presentation.mjs';
 
 test('selectores de producción incluyen nombres buscables y conservan IDs y acceso privado',async()=>{
  const db=await database();
@@ -22,6 +24,20 @@ test('selectores de producción incluyen nombres buscables y conservan IDs y acc
   const found=await list('detalle_encargo_costura',garment.producto,0,{detalle_encargo_id:String(detail.detalle_encargo_id)});
   assert.equal(found.total,1);assert.equal(found.rows[0].variante_id,detail.variante_id);
   assert.equal((await list('detalle_encargo_costura','Talla '+garment.talla)).total>0,true);
+  const save=async actions=>(await db.query('SELECT public.bm_registrar_operacion($1,$2,$3) result',[crypto.randomUUID(),JSON.stringify(actions),'Prueba de avance de recepción'])).rows[0].result;
+  const costurera=(await db.query('SELECT costurera_id FROM bm.costurera LIMIT 1')).rows[0];
+  const order=await save(workflowActions('encargo',{fecha:'2024-06-02',costurera:costurera.costurera_id,variante:detail.variante_id,cantidad:4,tarifa:5}));
+  const progress=async()=>(await list('detalle_encargo_costura','',0,{detalle_encargo_id:String(order[1].detalle_encargo_id)})).rows[0];
+  let row=await progress();assert.equal(row._recepcion,'Pendiente');assert.equal(row._pendientes_recibir,4);
+  await save(workflowActions('recepcion',{fecha:'2024-06-02',aceptadas:2,rechazadas:0,tela:7,insumos:0},{detalle:order[1]}));
+  row=await progress();assert.equal(row._recepcion,'Parcial');assert.equal(row._aceptadas,2);assert.equal(row._pendientes_recibir,2);
+  await save(workflowActions('recepcion',{fecha:'2024-06-03',aceptadas:1,rechazadas:1,tela:7,insumos:0},{detalle:order[1]}));
+  row=await progress();assert.equal(row._recepcion,'Recibido con rechazos');assert.equal(row._recibidas,4);assert.equal(row._aceptadas,3);assert.equal(row._rechazadas,1);assert.equal(row._pendientes_recibir,0);
+  // The progress is derived: it does not silently close the encargo or finalize costs.
+  assert.equal(row._estado_encargo,'en_proceso');
+  assert.equal(found.rows[0]._recepcion,'Recibido');
+  const csv=exportTableRows('detalle_encargo_costura',[row])[0];assert.equal(csv['Prenda, color y talla'],row._prenda);assert.equal(csv['Rechazadas'],1);assert.equal(csv['Encargo'],'Encargo '+row.encargo_id);
+  assert(!tableColumns('detalle_encargo_costura',[]).some(c=>c.name==='variante_id'));
   assert.equal((await list('tela')).rows[0]._etiqueta,undefined);
   await assert.rejects(list('usuario_bm'),/Consulta no permitida/);
   await assert.rejects(list('lote_tela','',0,{columna_inexistente:'1'}),/Filtro inválido/);

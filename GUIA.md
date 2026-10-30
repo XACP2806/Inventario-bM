@@ -83,7 +83,7 @@ En **Producción → Nuevo encargo** llena fecha, costurera, prenda/variante, un
 
 Ejemplo: 20 unidades de BM-VERDE-M a $5 de costura cada una. Crear el encargo no mueve tela ni añade camisas al stock.
 
-Si hay varias tallas en el mismo encargo, añade las otras en **Producción → Prendas por producir → Nuevo registro**, seleccionando el encargo creado, la variante, unidades y tarifa. El asistente inicial crea una sola combinación por vez.
+Si hay varias tallas en el mismo encargo, añade las otras en **Producción → Prendas de los encargos → Nuevo registro**, seleccionando el encargo creado, la variante, unidades y tarifa. El asistente inicial crea una sola combinación por vez.
 
 ### 3. Entregar tela al taller
 
@@ -139,3 +139,13 @@ La aplicación registra y analiza el negocio. No emite ni autoriza facturas elec
 5. Confirma. Se crea un detalle y un lote para esa tela; la factura y la cuenta son las mismas. Repite por cada color que falte.
 
 No vuelvas a añadir una tela que ya guardaste, ni cambies el número de factura para evitar el aviso de duplicado. Si otro usuario cambia la cuenta mientras revisas, el guardado se detiene: pulsa **Corregir** y vuelve a revisar para cargar el total actualizado. Si el importe de la cuenta no coincide con los detalles registrados, concílialos primero para evitar sumarlo dos veces.
+
+## Historial de prendas de los encargos
+
+En Producción → Prendas de los encargos, cada fila identifica una camisa, color y talla dentro de una producción concreta. La tabla muestra el taller, las unidades encargadas, aceptadas, pendientes de recibir y el avance calculado a partir de las recepciones. Todas las columnas incluye también las recibidas en total, rechazadas, tarifa y estado general del encargo.
+
+Recibir camisas actualiza ese avance automáticamente; no vuelvas a registrar una recepción ya guardada. Pendientes de recibir es lo encargado menos lo físicamente recibido, incluyendo rechazos. Por eso una fila puede estar Recibido con rechazos y tener cero pendientes de recibir, sin que todas las unidades sean aptas para vender.
+
+El estado general del encargo se administra por separado en Encargos de producción. Recibido indica que la entrega terminó; Cerrado se reserva para la revisión y conciliación de la producción y sus costos. El avance mostrado en la tabla no modifica ese estado ni finaliza costos por sí solo.
+
+Para una nueva tanda de camisas, usa Nuevo encargo. Reutiliza los productos, variantes y taller del catálogo, pero conserva los encargos y sus detalles anteriores como historial: no reemplaces sus fechas o cantidades para una producción futura.
