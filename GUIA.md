@@ -159,3 +159,13 @@ Para una nueva tanda de camisas, usa Nuevo encargo. Reutiliza los productos, var
 Para registrar un envío pagado por bM cuyo costo no se haya registrado en un despacho: crea una categoría **Envíos** en **Dinero → Categorías de gastos → Nuevo registro**, y luego usa **Registrar gasto** con esa categoría, fecha, descripción, importe y destinatario del pago. Marca **Sí; lo pagué ahora** solamente si ya se pagó; así afecta resultado y caja juntos.
 
 Si ya anotaste **Costo real del transporte** en un despacho, ese importe ya se resta del resultado operativo: no lo registres otra vez como gasto. Su pago se documenta en **Otras cuentas por pagar** y **Abonos a cuentas por pagar**, reutilizando la cuenta si ya existe. Una cuenta por pagar por sí sola no mueve dinero. No vuelvas a despachar una camisa que ya fue entregada para añadir un costo de transporte.
+
+### Cobrar una tarifa de envío distinta del costo real
+
+En **Registrar venta → Envío**, escribe **Envío cobrado al cliente · importe final** y el tratamiento tributario correspondiente al envío. La tarifa se incorpora al total a cobrar junto con las prendas; el IVA, cuando corresponde, está incluido en ese importe final. No cambies el precio de la camisa para sumar el envío.
+
+Si las prendas ya se entregaron, indica la forma de entrega, dirección y **Costo real del transporte**. Si bM ya lo pagó, marca **Sí; registrar el pago ahora**, escribe a quién se pagó y la forma de pago. Se registra el costo del despacho y su pago juntos sin duplicar un gasto general. Si queda pendiente, se crea la cuenta por pagar sin salida de dinero; después registra el abono en esa cuenta.
+
+Si entregarás después, registra ahora solo la tarifa cobrada; en **Ventas → Despachar** podrás anotar el costo real y si ya se pagó. **Reportes → Desglose del período → Resultado de envíos** separa lo cobrado sin IVA del costo real. Cobrar $5 sin IVA y pagar $4 aporta $1; pagar $6 resta $1. El saldo acumulado se modifica por los cobros y pagos confirmados, incluso si ocurren en fechas distintas.
+
+Las ventas ya registradas conservan sus importes. No crees de nuevo una venta ni un despacho existente para añadir un envío; en pedidos confirmados, los cargos adicionales se registran como ajustes de envío con su motivo.
