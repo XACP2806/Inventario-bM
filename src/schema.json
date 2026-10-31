@@ -6076,6 +6076,10 @@
       {
         "name": "saldo_pendiente",
         "readonly": true
+      },
+      {
+        "name": "cliente_nombre",
+        "readonly": true
       }
     ]
   },
