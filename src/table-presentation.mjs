@@ -5,6 +5,7 @@ function customerColumns(columns){
  const at=clean.findIndex(c=>c.name==='pedido_id')+1;clean.splice(at,0,{name:'_cliente',label:'Cliente'});return clean;
 }
 const salesBalanceColumns=[{name:'pedido_id',label:'Pedido'},{name:'cliente_nombre',label:'Cliente'},{name:'estado',label:'Estado'},{name:'total_neto_pedido',label:'Total neto pedido'},{name:'dinero_recibido',label:'Dinero recibido'},{name:'dinero_reembolsado',label:'Dinero reembolsado'},{name:'saldo_pendiente',label:'Saldo pendiente'}];
+const fabricTotalColumns=[{name:'tela_nombre',label:'Tela'},{name:'metros_disponibles',label:'Metros disponibles'}];
 const fabricStockColumns=[
  {name:'tela_nombre',label:'Tela'},
  {name:'ubicacion',label:'Ubicación'},
@@ -31,6 +32,7 @@ const productionDetails=[
  {name:'detalle_pedido_id',label:'Código de prenda del pedido'}
 ];
 export function tableColumns(table,columns,expanded=false){
+ if(table==='v_tela_disponible')return expanded?[...fabricTotalColumns,{name:'tela_id',label:'Código de tela'}]:fabricTotalColumns;
  if(table==='v_saldo_pedido')return expanded?[...salesBalanceColumns,{name:'cliente_id',label:'Código de cliente'}]:salesBalanceColumns;
  if(salesCustomerViews.includes(table)){const named=customerColumns(columns);return expanded?named:named.slice(0,7);}
  if(table==='detalle_encargo_costura')return expanded?[...productionColumns,...productionDetails]:productionColumns;
@@ -44,6 +46,7 @@ export function tableValue(table,column,row){
  return row[column];
 }
 export function exportTableRows(table,rows){
+ if(table==='v_tela_disponible')return rows.map(row=>Object.fromEntries(fabricTotalColumns.map(c=>[c.label,row[c.name]])));
  if(table==='v_saldo_pedido')return rows.map(row=>Object.fromEntries(salesBalanceColumns.map(c=>[c.label,tableValue(table,c.name,row)])));
  if(salesCustomerViews.includes(table))return rows.map(row=>Object.fromEntries(customerColumns(Object.keys(row).map(name=>({name}))).map(c=>[c.label||c.name,tableValue(table,c.name,row)])));
  if(table==='detalle_encargo_costura')return rows.map(row=>Object.fromEntries([...productionColumns,...productionDetails].map(c=>[c.label,tableValue(table,c.name,row)])));

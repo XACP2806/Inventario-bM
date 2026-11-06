@@ -6132,5 +6132,22 @@
         "readonly": true
       }
     ]
+  },
+  "v_tela_disponible": {
+    "view": true,
+    "columns": [
+      {
+        "name": "tela_id",
+        "readonly": true
+      },
+      {
+        "name": "tela_nombre",
+        "readonly": true
+      },
+      {
+        "name": "metros_disponibles",
+        "readonly": true
+      }
+    ]
   }
 }
