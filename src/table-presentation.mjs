@@ -32,6 +32,12 @@ const productionDetails=[
  {name:'detalle_pedido_id',label:'Código de prenda del pedido'}
 ];
 export function tableColumns(table,columns,expanded=false){
+ if(table==='movimiento_tela'){
+  const named=columns.filter(c=>c.name!=='_tela');
+  const at=named.findIndex(c=>c.name==='lote_tela_id');
+  named.splice(at<0?0:at,0,{name:'_tela',label:'Tela'});
+  return expanded?named:named.slice(0,8);
+ }
  if(table==='v_tela_disponible')return expanded?[...fabricTotalColumns,{name:'tela_id',label:'Código de tela'}]:fabricTotalColumns;
  if(table==='v_saldo_pedido')return expanded?[...salesBalanceColumns,{name:'cliente_id',label:'Código de cliente'}]:salesBalanceColumns;
  if(salesCustomerViews.includes(table)){const named=customerColumns(columns);return expanded?named:named.slice(0,7);}
@@ -46,6 +52,7 @@ export function tableValue(table,column,row){
  return row[column];
 }
 export function exportTableRows(table,rows){
+ if(table==='movimiento_tela')return rows.map(row=>Object.fromEntries(tableColumns(table,Object.keys(row).map(name=>({name})),true).map(c=>[c.label||c.name,tableValue(table,c.name,row)])));
  if(table==='v_tela_disponible')return rows.map(row=>Object.fromEntries(fabricTotalColumns.map(c=>[c.label,row[c.name]])));
  if(table==='v_saldo_pedido')return rows.map(row=>Object.fromEntries(salesBalanceColumns.map(c=>[c.label,tableValue(table,c.name,row)])));
  if(salesCustomerViews.includes(table))return rows.map(row=>Object.fromEntries(customerColumns(Object.keys(row).map(name=>({name}))).map(c=>[c.label||c.name,tableValue(table,c.name,row)])));
