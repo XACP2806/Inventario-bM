@@ -32,6 +32,10 @@ const productionDetails=[
  {name:'detalle_pedido_id',label:'Código de prenda del pedido'}
 ];
 export function tableColumns(table,columns,expanded=false){
+ if(table==='envio'){
+  const main=[{name:'envio_id',label:'Despacho'},{name:'pedido_id',label:'Pedido'},{name:'_cliente',label:'Cliente'},{name:'_despachadas',label:'Unidades despachadas'},{name:'_entregadas',label:'Recibidas por el cliente'},{name:'_pendientes',label:'Pendientes de recepción'},{name:'_estado_entrega',label:'Estado de recepción'},{name:'fecha_envio',label:'Fecha de despacho'},{name:'_fecha_recepcion',label:'Recepción completa'}];
+  return expanded?[...main,...columns.filter(c=>!main.some(m=>m.name===c.name)&&!['estado','fecha_entrega'].includes(c.name))]:main;
+ }
  if(table==='movimiento_tela'){
   const named=columns.filter(c=>c.name!=='_tela');
   const at=named.findIndex(c=>c.name==='lote_tela_id');
@@ -52,6 +56,7 @@ export function tableValue(table,column,row){
  return row[column];
 }
 export function exportTableRows(table,rows){
+ if(table==='envio')return rows.map(row=>Object.fromEntries(tableColumns(table,Object.keys(row).filter(name=>!name.startsWith('_')).map(name=>({name})),true).map(c=>[c.label||c.name,tableValue(table,c.name,row)])));
  if(table==='movimiento_tela')return rows.map(row=>Object.fromEntries(tableColumns(table,Object.keys(row).map(name=>({name})),true).map(c=>[c.label||c.name,tableValue(table,c.name,row)])));
  if(table==='v_tela_disponible')return rows.map(row=>Object.fromEntries(fabricTotalColumns.map(c=>[c.label,row[c.name]])));
  if(table==='v_saldo_pedido')return rows.map(row=>Object.fromEntries(salesBalanceColumns.map(c=>[c.label,tableValue(table,c.name,row)])));

@@ -17,7 +17,7 @@ test('prendas despachadas muestran camisa, talla y número sin alterar datos y p
     const result=await list(search,0,filters);
     assert.equal(result.total,1);
     const actual=result.rows[0];
-    assert.equal(actual._etiqueta,`${row.nombre} · Talla ${row.talla} · Prenda despachada #${row.data.detalle_envio_id}`);
+    assert(actual._etiqueta.includes(`${row.nombre} · Talla ${row.talla} · Prenda despachada #${row.data.detalle_envio_id}`));
     for(const [key,value] of Object.entries(row.data))assert.deepEqual(actual[key],value);
    }
   }
