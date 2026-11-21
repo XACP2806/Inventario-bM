@@ -3277,7 +3277,7 @@
       {
         "name": "detalle_recepcion_id",
         "type": "bigint",
-        "nullable": false,
+        "nullable": true,
         "default": null,
         "readonly": false,
         "max": null,
@@ -3366,6 +3366,40 @@
         "default": "clock_timestamp()",
         "readonly": true,
         "max": null
+      },
+      {
+        "name": "entalle_origen_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "entalle_origen_id",
+          "target": "lote_producto",
+          "key": "lote_producto_id"
+        }
+      },
+      {
+        "name": "costo_entalle",
+        "type": "numeric",
+        "nullable": false,
+        "default": "0",
+        "readonly": false,
+        "max": null
+      },
+      {
+        "name": "entalle_cuenta_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "entalle_cuenta_id",
+          "target": "cuenta_pagar",
+          "key": "cuenta_pagar_id"
+        }
       }
     ]
   },
@@ -3601,6 +3635,19 @@
         "default": "clock_timestamp()",
         "readonly": true,
         "max": null
+      },
+      {
+        "name": "entalle_lote_id",
+        "type": "bigint",
+        "nullable": true,
+        "default": null,
+        "readonly": false,
+        "max": null,
+        "fk": {
+          "col": "entalle_lote_id",
+          "target": "lote_producto",
+          "key": "lote_producto_id"
+        }
       }
     ]
   },
@@ -5431,6 +5478,39 @@
       },
       {
         "name": "estado_entrega_linea",
+        "readonly": true
+      }
+    ]
+  },
+  "v_entalles": {
+    "view": true,
+    "columns": [
+      {
+        "name": "lote_producto_id",
+        "readonly": true
+      },
+      {
+        "name": "camisa_original",
+        "readonly": true
+      },
+      {
+        "name": "camisa_entallada",
+        "readonly": true
+      },
+      {
+        "name": "fecha_entalle",
+        "readonly": true
+      },
+      {
+        "name": "costo_entalle",
+        "readonly": true
+      },
+      {
+        "name": "costo_total_unitario",
+        "readonly": true
+      },
+      {
+        "name": "cuenta_pagar_id",
         "readonly": true
       }
     ]

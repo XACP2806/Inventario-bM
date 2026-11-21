@@ -12,7 +12,7 @@ test('formularios seleccionan registros por su clave y no duplican columnas',()=
   for(const col of resource.columns)if(col.fk)assert.equal(col.fk.key,schema[col.fk.target].key,table+'.'+col.name);
  }
  assert.equal(schema.detalle_encargo_costura.columns.find(c=>c.name==='variante_id').fk.target,'variante_articulo');
- assert.equal(Object.values(schema).filter(r=>r.view).length,22);
+ assert.equal(Object.values(schema).filter(r=>r.view).length,23);
 });
 test('CSV neutraliza fórmulas y escapa comillas',()=>assert.equal(csvText([{nombre:'=1+1',nota:'a"b'}]),'\uFEFF"nombre","nota"\r\n"\'=1+1","a""b"'));
 test('comparación conserva duración e incluye ambos extremos',()=>assert.deepEqual(previousPeriod('2024-03-01','2024-03-31'),['2024-01-30','2024-02-29']));
@@ -27,10 +27,10 @@ test('flujos de interfaz, reportes e idempotencia en PostgreSQL',async()=>{const
  const items=[{variante:variants[0].variante_id,cantidad:1,precio:44,lote:lots[0].lote_producto_id}];
  const actions=saleActions(values,items,{variantes:variants,articulos:arts,tarifas:rates});
  await db.query('SELECT public.bm_registrar_operacion($1,$2,$3)',['27525863-5d32-4636-a523-7eb678895161',JSON.stringify(actions),'Venta de prueba desde interfaz']);
- const before=(await query('v_stock_lote_producto'))[0].stock_fisico;
+ const before=(await query('v_stock_lote_producto')).find(r=>r.lote_producto_id===lots[0].lote_producto_id).stock_fisico;
  assert.equal(before,8);
  await db.query('SELECT public.bm_registrar_operacion($1,$2,$3)',['27525863-5d32-4636-a523-7eb678895161',JSON.stringify(actions),'Venta de prueba desde interfaz']);
- assert.equal((await query('v_stock_lote_producto'))[0].stock_fisico,before);
+ assert.equal((await query('v_stock_lote_producto')).find(r=>r.lote_producto_id===lots[0].lote_producto_id).stock_fisico,before);
  const panel=(await db.query("SELECT public.bm_panel('2024-03-01','2024-03-31') x")).rows[0].x;
  assert.equal(Number(panel.serie[0].ventas),38.26);assert.equal(Number(panel.serie[0].cobros),44);assert.equal(panel.unidades,1);
  const page=(await db.query("SELECT public.bm_datos('pedido',1,0,'','{}') x")).rows[0].x;assert.equal(page.rows.length,1);assert.ok(page.total>1);
@@ -53,7 +53,7 @@ test('flujos de interfaz, reportes e idempotencia en PostgreSQL',async()=>{const
  await db.query('SELECT public.bm_registrar_operacion($1,$2,$3)',[crypto.randomUUID(),JSON.stringify(cancel),'Cancelacion parcial desde interfaz']);
  const remaining=(await query('reserva_producto')).find(r=>r.reserva_id===reservation.reserva_id);
  assert.equal(remaining.cantidad,2);assert.equal(remaining.estado,'activa');
- assert.equal((await query('v_stock_lote_producto'))[0].stock_fisico,8);
+ assert.equal((await query('v_stock_lote_producto')).find(r=>r.lote_producto_id===lots[0].lote_producto_id).stock_fisico,8);
  await db.exec(`SELECT set_config('request.jwt.claim.sub','9a70e587-27bc-424b-ae80-c80a9995d249',false); SET ROLE authenticated;`);
  await assert.rejects(db.query("SELECT public.bm_panel('2024-01-01','2024-12-31')"),/no tiene acceso/);
  await assert.rejects(db.query("SELECT public.bm_datos('pedido')"),/no tiene acceso/);

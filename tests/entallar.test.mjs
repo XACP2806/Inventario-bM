@@ -1,0 +1,41 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {database} from '../scripts/schema.mjs';
+import {saleActions} from '../src/workflows.mjs';
+test('entalle conserva unidades, costos y caja; pago pendiente, reintentos y validaciones',async()=>{
+ const db=await database();try{
+ await db.exec(fs.readFileSync('tests.sql','utf8').replace(/ROLLBACK;\s*$/,'COMMIT;'));
+ const lot=(await db.query('SELECT l.*,s.stock_disponible FROM bm.lote_producto l JOIN bm.v_stock_lote_producto s USING(lote_producto_id) WHERE s.stock_disponible>1 ORDER BY lote_producto_id LIMIT 1')).rows[0];
+ const target=(await db.query('SELECT b.variante_id FROM bm.variante_articulo a JOIN bm.variante_articulo b ON a.articulo_id=b.articulo_id AND a.color_id=b.color_id AND a.talla_id<>b.talla_id WHERE a.variante_id=$1',[lot.variante_id])).rows[0].variante_id;
+ await db.exec("SET ROLE authenticated; SELECT set_config('request.jwt.claim.sub','83d20ad7-300c-4cd0-9ea7-ff82366f77c2',false)");
+ const call=async(id,source=lot.lote_producto_id,dest=target,cost=3,paid=false)=>(await db.query("SELECT public.bm_entallar_camisa($1,$2,$3,'2024-06-01',$4,$5,'Taller de prueba','efectivo') result",[id,source,dest,cost,paid])).rows[0].result;
+ const id=crypto.randomUUID(),result=await call(id),newLot=result.find(x=>x.entalle_origen_id);
+ assert.equal(Number(newLot.costo_total_unitario),Number(lot.costo_total_unitario)+3);
+ assert.deepEqual(await call(id),result);
+ const stock=(await db.query('SELECT * FROM bm.v_stock_lote_producto WHERE lote_producto_id IN ($1,$2)',[lot.lote_producto_id,newLot.lote_producto_id])).rows;
+ assert.equal(stock.find(x=>x.lote_producto_id===newLot.lote_producto_id).stock_disponible,1);
+ assert.equal(stock.find(x=>x.lote_producto_id===lot.lote_producto_id).stock_disponible,lot.stock_disponible-1);
+ assert.equal((await db.query('SELECT count(*)::int n FROM bm.abono_cuenta_pagar WHERE cuenta_pagar_id=$1',[newLot.entalle_cuenta_id])).rows[0].n,0);
+ assert.equal((await db.query("SELECT count(*)::int n FROM bm.v_resultado_operativo_diario WHERE dia='2024-06-01' AND gastos_generales_y_mermas<>0")).rows[0].n,0);
+ const paid=await call(crypto.randomUUID(),newLot.lote_producto_id,lot.variante_id,2,true);
+ assert.equal(paid.filter(x=>x.abono_id).length,1);
+ assert.equal(Number(paid.find(x=>x.entalle_origen_id).costo_total_unitario),Number(lot.costo_total_unitario)+5);
+ await assert.rejects(call(crypto.randomUUID(),newLot.lote_producto_id,lot.variante_id),/disponibles/);
+ await assert.rejects(call(crypto.randomUUID(),lot.lote_producto_id,lot.variante_id),/otra talla/);
+ await assert.rejects(call(crypto.randomUUID(),lot.lote_producto_id,target,-1),/costo/);
+ await assert.rejects(call(id,lot.lote_producto_id,target,5),/Identificador/);
+ const rows=async(t)=>(await db.query('SELECT * FROM bm.'+t)).rows;
+ const context={variantes:await rows('variante_articulo'),articulos:await rows('articulo'),tarifas:await rows('tarifa_iva_vigencia')};
+ const values={fecha:'2024-06-02',cliente:(await rows('cliente'))[0].cliente_id,tratamiento:'gravado',tarifa:context.tarifas.find(t=>Number(t.porcentaje)===15).tarifa_iva_id,modalidad:'entregar',cobro:0};
+ const output=paid.find(x=>x.entalle_origen_id);
+ const save=async(actions)=>(await db.query('SELECT public.bm_registrar_operacion($1,$2,$3)',[crypto.randomUUID(),JSON.stringify(actions),'Prueba venta y reserva tras entalle']));
+ await save(saleActions(values,[{variante:lot.variante_id,lote:output.lote_producto_id,cantidad:1,precio:44}],context));
+ assert.equal((await rows('v_stock_lote_producto')).find(x=>x.lote_producto_id===output.lote_producto_id).stock_fisico,0);
+ const available=(await rows('v_stock_lote_producto')).find(x=>x.lote_producto_id===lot.lote_producto_id).stock_disponible;
+ await save(saleActions({...values,modalidad:'reservar'},[{variante:lot.variante_id,lote:lot.lote_producto_id,cantidad:available,precio:44}],context));
+ await assert.rejects(call(crypto.randomUUID()),/disponibles/);
+ await db.exec("SELECT set_config('request.jwt.claim.sub','9a70e587-27bc-424b-ae80-c80a9995d249',false)");
+ await assert.rejects(call(crypto.randomUUID()),/no autorizado/);
+ }finally{await db.close();}
+});
